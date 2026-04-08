@@ -1,0 +1,53 @@
+{
+  "common": {
+    "appName": "ПДД Украины — Тренажёр",
+    "home": "Главная",
+    "practice": "Практика",
+    "exam": "Экзамен",
+    "stats": "Статистика",
+    "history": "История",
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти",
+    "language": "Язык",
+    "next": "Далее",
+    "back": "Назад",
+    "start": "Начать",
+    "finish": "Завершить",
+    "tryAgain": "Попробовать снова",
+    "loading": "Загрузка..."
+  },
+  "quiz": {
+    "question": "Вопрос",
+    "of": "из",
+    "timeRemaining": "Осталось времени",
+    "errors": "Ошибки",
+    "passed": "Сдано!",
+    "failed": "Не сдано",
+    "score": "Результат",
+    "correctAnswer": "Правильный ответ",
+    "explanation": "Пояснение",
+    "pddReference": "Ссылка на ПДД"
+  },
+  "stats": {
+    "overview": "Обзор",
+    "totalSessions": "Всего сессий",
+    "avgScore": "Средний балл",
+    "bestScore": "Лучший результат",
+    "streak": "Серия",
+    "byTopic": "По темам",
+    "weakTopics": "Слабые темы",
+    "practiceThis": "Практиковать эту тему"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Пароль",
+    "loginTitle": "Вход",
+    "registerTitle": "Регистрация",
+    "noAccount": "Нет аккаунта?",
+    "hasAccount": "Уже есть аккаунт?"
+  },
+  "footer": {
+    "disclaimer": "Учебный материал. Для официальных правил обращайтесь к действующей редакции ПДД Украины."
+  }
+}

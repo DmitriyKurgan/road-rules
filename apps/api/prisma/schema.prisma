@@ -1,0 +1,170 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TicketStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum SessionMode {
+  EXAM
+  PRACTICE
+}
+
+enum Lang {
+  ru
+  uk
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum TicketImageRole {
+  PRIMARY
+  SECONDARY
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  role         UserRole @default(USER)
+  refreshToken String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  sessions     Session[]
+
+  @@map("users")
+}
+
+model Ticket {
+  id            String       @id @default(uuid())
+  questionRu    String
+  questionUk    String
+  explanationRu String
+  explanationUk String
+  pddRef        String
+  difficulty    Difficulty
+  tags          String[]
+  status        TicketStatus @default(DRAFT)
+  scenarioHash  String       @unique
+  imageBrief    String?
+  imageSearchQ  String[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  options        TicketOption[]
+  images         TicketImage[]
+  sessionTickets SessionTicket[]
+
+  @@index([status])
+  @@index([difficulty])
+  @@index([tags], type: Gin)
+  @@map("tickets")
+}
+
+model TicketOption {
+  id        String  @id @default(uuid())
+  ticketId  String
+  textRu    String
+  textUk    String
+  isCorrect Boolean @default(false)
+  order     Int
+
+  ticket  Ticket          @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  answers SessionAnswer[]
+
+  @@unique([ticketId, order])
+  @@map("ticket_options")
+}
+
+model ImageAsset {
+  id              String   @id @default(uuid())
+  sourceUrl       String
+  storedKey       String   @unique
+  license         String
+  author          String
+  title           String
+  attributionHtml String
+  sha256          String   @unique
+  width           Int?
+  height          Int?
+  createdAt       DateTime @default(now())
+
+  ticketImages TicketImage[]
+
+  @@map("image_assets")
+}
+
+model TicketImage {
+  id       String          @id @default(uuid())
+  ticketId String
+  imageId  String
+  role     TicketImageRole @default(PRIMARY)
+
+  ticket Ticket     @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  image  ImageAsset @relation(fields: [imageId], references: [id], onDelete: Cascade)
+
+  @@unique([ticketId, role])
+  @@map("ticket_images")
+}
+
+model Session {
+  id        String      @id @default(uuid())
+  userId    String?
+  mode      SessionMode
+  lang      Lang        @default(ru)
+  startedAt DateTime    @default(now())
+  endedAt   DateTime?
+  score     Int?
+
+  user    User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
+  tickets SessionTicket[]
+
+  @@index([userId, startedAt])
+  @@map("sessions")
+}
+
+model SessionTicket {
+  id        String @id @default(uuid())
+  sessionId String
+  ticketId  String
+  order     Int
+
+  session Session        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  ticket  Ticket         @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  answer  SessionAnswer?
+
+  @@unique([sessionId, order])
+  @@unique([sessionId, ticketId])
+  @@map("session_tickets")
+}
+
+model SessionAnswer {
+  id               String   @id @default(uuid())
+  sessionTicketId  String   @unique
+  selectedOptionId String
+  isCorrect        Boolean
+  timeMs           Int
+  answeredAt       DateTime @default(now())
+
+  sessionTicket  SessionTicket @relation(fields: [sessionTicketId], references: [id], onDelete: Cascade)
+  selectedOption TicketOption  @relation(fields: [selectedOptionId], references: [id], onDelete: Cascade)
+
+  @@map("session_answers")
+}

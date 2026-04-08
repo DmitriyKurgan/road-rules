@@ -1,0 +1,53 @@
+{
+  "common": {
+    "appName": "ПДР України — Тренажер",
+    "home": "Головна",
+    "practice": "Практика",
+    "exam": "Іспит",
+    "stats": "Статистика",
+    "history": "Історія",
+    "login": "Увійти",
+    "register": "Реєстрація",
+    "logout": "Вийти",
+    "language": "Мова",
+    "next": "Далі",
+    "back": "Назад",
+    "start": "Почати",
+    "finish": "Завершити",
+    "tryAgain": "Спробувати знову",
+    "loading": "Завантаження..."
+  },
+  "quiz": {
+    "question": "Питання",
+    "of": "з",
+    "timeRemaining": "Залишилось часу",
+    "errors": "Помилки",
+    "passed": "Складено!",
+    "failed": "Не складено",
+    "score": "Результат",
+    "correctAnswer": "Правильна відповідь",
+    "explanation": "Пояснення",
+    "pddReference": "Посилання на ПДР"
+  },
+  "stats": {
+    "overview": "Огляд",
+    "totalSessions": "Всього сесій",
+    "avgScore": "Середній бал",
+    "bestScore": "Найкращий результат",
+    "streak": "Серія",
+    "byTopic": "За темами",
+    "weakTopics": "Слабкі теми",
+    "practiceThis": "Практикувати цю тему"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Пароль",
+    "loginTitle": "Вхід",
+    "registerTitle": "Реєстрація",
+    "noAccount": "Немає акаунту?",
+    "hasAccount": "Вже є акаунт?"
+  },
+  "footer": {
+    "disclaimer": "Навчальний матеріал. Для офіційних правил звертайтесь до чинної редакції ПДР України."
+  }
+}

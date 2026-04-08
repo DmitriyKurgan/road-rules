@@ -1,0 +1,20 @@
+{
+  "name": "road-rules",
+  "private": true,
+  "packageManager": "pnpm@10.7.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "db:migrate": "pnpm --filter @road-rules/api exec prisma migrate dev",
+    "db:seed": "pnpm --filter @road-rules/api exec prisma db seed",
+    "db:studio": "pnpm --filter @road-rules/api exec prisma studio"
+  },
+  "devDependencies": {
+    "turbo": "^2.9.5"
+  }
+}

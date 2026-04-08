@@ -1,0 +1,30 @@
+import { Injectable, ExecutionContext, UnauthorizedException } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
+import { Reflector } from "@nestjs/core";
+import { IS_PUBLIC_KEY } from "../common/decorators/public.decorator";
+
+@Injectable()
+export class JwtAuthGuard extends AuthGuard("jwt") {
+  constructor(private reflector: Reflector) {
+    super();
+  }
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+
+    if (isPublic) {
+      // Try to authenticate but don't fail if no token
+      try {
+        await super.canActivate(context);
+      } catch {
+        // No valid token — that's fine for public routes
+      }
+      return true;
+    }
+
+    return super.canActivate(context) as Promise<boolean>;
+  }
+}
