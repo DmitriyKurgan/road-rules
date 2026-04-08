@@ -87,6 +87,18 @@ export class ImagesService {
       );
       if (!isAllowed) continue;
 
+      // Filter out non-image files (PDFs, DjVu, etc.)
+      const titleLower = title.toLowerCase();
+      if (
+        titleLower.endsWith(".pdf") ||
+        titleLower.endsWith(".djvu") ||
+        titleLower.endsWith(".ogg") ||
+        titleLower.endsWith(".ogv") ||
+        titleLower.endsWith(".webm") ||
+        titleLower.endsWith(".mp3") ||
+        titleLower.endsWith(".wav")
+      ) continue;
+
       const pageUrl = `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title)}`;
       const attribution = `${title} by ${author}, ${licenseRaw}, via Wikimedia Commons`;
 

@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PDD Ticket Import Format",
+  "description": "Schema for importing traffic rules exam tickets. Each ticket must have exactly 4 options with exactly 1 correct answer.",
+  "type": "object",
+  "required": ["tickets"],
+  "properties": {
+    "tickets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Ticket"
+      }
+    }
+  },
+  "definitions": {
+    "Ticket": {
+      "type": "object",
+      "required": [
+        "questionRu",
+        "questionUk",
+        "explanationRu",
+        "explanationUk",
+        "pddRef",
+        "difficulty",
+        "tags",
+        "scenarioHash",
+        "options"
+      ],
+      "properties": {
+        "questionRu": {
+          "type": "string",
+          "description": "Question text in Russian. Short, unambiguous, max 2 sentences.",
+          "minLength": 10
+        },
+        "questionUk": {
+          "type": "string",
+          "description": "Question text in Ukrainian. Must convey the same meaning as questionRu.",
+          "minLength": 10
+        },
+        "explanationRu": {
+          "type": "string",
+          "description": "Explanation in Russian. 2-5 sentences: why correct answer is right + why key distractor is wrong.",
+          "minLength": 20
+        },
+        "explanationUk": {
+          "type": "string",
+          "description": "Explanation in Ukrainian. Same content as explanationRu.",
+          "minLength": 20
+        },
+        "pddRef": {
+          "type": "string",
+          "description": "PDD paragraph reference, e.g. '12.4', '16.12', '1.1'",
+          "pattern": "^\\d+\\.\\d+(\\.\\d+)?$"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["EASY", "MEDIUM", "HARD"],
+          "description": "EASY: 1 rule, 1 participant. MEDIUM: 2 participants or rule+exception. HARD: multiple conditions, edge cases."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "speed",
+              "intersection",
+              "intersections",
+              "priority",
+              "signs",
+              "warning",
+              "prohibitory",
+              "mandatory",
+              "informational",
+              "markings",
+              "traffic_lights",
+              "turning",
+              "overtaking",
+              "parking",
+              "stopping",
+              "pedestrians",
+              "special_vehicles",
+              "settlement",
+              "highway",
+              "visibility",
+              "weather",
+              "documents",
+              "passengers",
+              "cargo",
+              "towing",
+              "cyclists",
+              "signals",
+              "lane_change",
+              "reversing",
+              "emergency",
+              "roundabout",
+              "railway_crossing",
+              "bus_stop",
+              "school_zone",
+              "equal_roads",
+              "traffic_jam",
+              "residential_zone",
+              "first_aid",
+              "vehicle_systems",
+              "safety"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 8,
+          "description": "Topic tags in English snake_case."
+        },
+        "scenarioHash": {
+          "type": "string",
+          "description": "Unique identifier for deduplication. Format: {topic}-{subtopic}-{variant}-{number}",
+          "pattern": "^[a-z0-9_-]+$",
+          "minLength": 5
+        },
+        "imageBrief": {
+          "type": ["string", "null"],
+          "description": "1-2 sentences describing what should be shown in the illustration."
+        },
+        "imageSearchQueries": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "3-5 search queries for finding images. At least 2 for Wikimedia Commons."
+        },
+        "options": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/definitions/Option"
+          },
+          "description": "Exactly 4 answer options. Exactly 1 must have isCorrect=true."
+        }
+      }
+    },
+    "Option": {
+      "type": "object",
+      "required": ["textRu", "textUk", "isCorrect", "order"],
+      "properties": {
+        "textRu": {
+          "type": "string",
+          "description": "Option text in Russian.",
+          "minLength": 1
+        },
+        "textUk": {
+          "type": "string",
+          "description": "Option text in Ukrainian.",
+          "minLength": 1
+        },
+        "isCorrect": {
+          "type": "boolean",
+          "description": "True for the correct answer. Exactly 1 option must be true."
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Display order: 1, 2, 3, or 4."
+        }
+      }
+    }
+  }
+}

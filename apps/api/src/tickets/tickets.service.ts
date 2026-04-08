@@ -8,6 +8,18 @@ import { ImportTicketDto } from "./dto/import-ticket.dto";
 export class TicketsService {
   constructor(private prisma: PrismaService) {}
 
+  async findByScenarioHash(scenarioHash: string) {
+    const ticket = await this.prisma.ticket.findUnique({
+      where: { scenarioHash },
+      include: {
+        options: { orderBy: { order: "asc" } },
+        images: { include: { image: true } },
+      },
+    });
+    if (!ticket) throw new NotFoundException("Ticket not found");
+    return ticket;
+  }
+
   async findById(id: string) {
     const ticket = await this.prisma.ticket.findUnique({
       where: { id },

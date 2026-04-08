@@ -16,6 +16,11 @@ interface TicketCardProps {
       textRu: string;
       textUk: string;
     }>;
+    images?: Array<{
+      url: string;
+      title: string;
+      attributionHtml: string;
+    }>;
   };
   isLast: boolean;
 }
@@ -83,6 +88,22 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
         </p>
         <h2 className="text-lg font-semibold text-gray-900">{questionText}</h2>
       </div>
+
+      {/* Image */}
+      {ticket.images && ticket.images.length > 0 && (
+        <div className="mb-6 flex justify-center">
+          <div className="text-center">
+            <img
+              src={`${process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:3001"}${ticket.images[0].url}`}
+              alt={ticket.images[0].title}
+              className="mx-auto max-h-48 rounded-lg object-contain"
+            />
+            <p className="mt-1 text-xs text-gray-400">
+              {ticket.images[0].title}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Options */}
       <div className="mb-6 space-y-3">

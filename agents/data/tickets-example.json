@@ -1,0 +1,70 @@
+{
+  "tickets": [
+    {
+      "questionRu": "Какова максимальная разрешённая скорость в населённом пункте?",
+      "questionUk": "Яка максимальна дозволена швидкість у населеному пункті?",
+      "explanationRu": "Согласно п. 12.4 ПДД Украины, в населённых пунктах скорость движения ограничена 50 км/ч. Ответ «60 км/ч» неверен — такое ограничение не предусмотрено ПДД Украины для населённых пунктов.",
+      "explanationUk": "Згідно з п. 12.4 ПДР України, у населених пунктах швидкість руху обмежена 50 км/год. Відповідь «60 км/год» невірна — таке обмеження не передбачено ПДР України для населених пунктів.",
+      "pddRef": "12.4",
+      "difficulty": "EASY",
+      "tags": ["speed", "settlement"],
+      "scenarioHash": "speed-settlement-50kmh-basic-001",
+      "imageBrief": "Знак обмеження швидкості 50 км/год на в'їзді у населений пункт",
+      "imageSearchQueries": [
+        "site:commons.wikimedia.org UA road sign 3.29-050 svg",
+        "commons search: Ukraine speed limit 50 sign",
+        "Ukraine settlement speed limit road sign"
+      ],
+      "options": [
+        { "textRu": "60 км/ч", "textUk": "60 км/год", "isCorrect": false, "order": 1 },
+        { "textRu": "50 км/ч", "textUk": "50 км/год", "isCorrect": true, "order": 2 },
+        { "textRu": "40 км/ч", "textUk": "40 км/год", "isCorrect": false, "order": 3 },
+        { "textRu": "70 км/ч", "textUk": "70 км/год", "isCorrect": false, "order": 4 }
+      ]
+    },
+    {
+      "questionRu": "Кто имеет преимущество на перекрёстке равнозначных дорог?",
+      "questionUk": "Хто має перевагу на перехресті рівнозначних доріг?",
+      "explanationRu": "Согласно п. 16.12 ПДД, на перекрёстке равнозначных дорог преимущество имеет транспортное средство, приближающееся справа (правило «помехи справа»). Ответ «грузовой автомобиль» неверен — тип транспортного средства не влияет на приоритет на равнозначном перекрёстке.",
+      "explanationUk": "Згідно з п. 16.12 ПДР, на перехресті рівнозначних доріг перевагу має транспортний засіб, що наближається справа (правило «перешкоди справа»). Відповідь «вантажний автомобіль» невірна — тип транспортного засобу не впливає на пріоритет на рівнозначному перехресті.",
+      "pddRef": "16.12",
+      "difficulty": "MEDIUM",
+      "tags": ["intersections", "priority", "equal_roads"],
+      "scenarioHash": "intersection-equal-right-priority-001",
+      "imageBrief": "Схема перехрестя рівнозначних доріг з двома автомобілями, один наближається справа",
+      "imageSearchQueries": [
+        "site:commons.wikimedia.org crossroads priority right",
+        "commons search: uncontrolled intersection right hand rule diagram",
+        "equal intersection priority to the right svg"
+      ],
+      "options": [
+        { "textRu": "Водитель, который едет быстрее", "textUk": "Водій, який їде швидше", "isCorrect": false, "order": 1 },
+        { "textRu": "Транспортное средство справа", "textUk": "Транспортний засіб справа", "isCorrect": true, "order": 2 },
+        { "textRu": "Грузовой автомобиль", "textUk": "Вантажний автомобіль", "isCorrect": false, "order": 3 },
+        { "textRu": "Транспортное средство слева", "textUk": "Транспортний засіб зліва", "isCorrect": false, "order": 4 }
+      ]
+    },
+    {
+      "questionRu": "Что означает мигающий жёлтый сигнал светофора?",
+      "questionUk": "Що означає миготливий жовтий сигнал світлофора?",
+      "explanationRu": "Согласно п. 8.7.4 ПДД, мигающий жёлтый сигнал светофора означает, что перекрёсток или пешеходный переход нерегулируемый. Водитель должен руководствоваться знаками приоритета и правилами проезда нерегулируемых перекрёстков. Ответ «запрещено движение» неверен — жёлтый мигающий не запрещает движение.",
+      "explanationUk": "Згідно з п. 8.7.4 ПДР, миготливий жовтий сигнал світлофора означає, що перехрестя або пішохідний перехід є нерегульованим. Водій повинен керуватися знаками пріоритету та правилами проїзду нерегульованих перехресть. Відповідь «рух заборонено» невірна — жовтий миготливий не забороняє рух.",
+      "pddRef": "8.7.4",
+      "difficulty": "EASY",
+      "tags": ["traffic_lights", "intersection"],
+      "scenarioHash": "traffic-lights-yellow-flashing-001",
+      "imageBrief": "Світлофор з миготливим жовтим сигналом",
+      "imageSearchQueries": [
+        "site:commons.wikimedia.org traffic light flashing yellow svg",
+        "commons search: amber flashing traffic signal",
+        "flashing yellow traffic light diagram"
+      ],
+      "options": [
+        { "textRu": "Перекрёсток нерегулируемый, действуют знаки приоритета", "textUk": "Перехрестя нерегульоване, діють знаки пріоритету", "isCorrect": true, "order": 1 },
+        { "textRu": "Движение запрещено во всех направлениях", "textUk": "Рух заборонено у всіх напрямках", "isCorrect": false, "order": 2 },
+        { "textRu": "Разрешено движение только прямо", "textUk": "Дозволено рух тільки прямо", "isCorrect": false, "order": 3 },
+        { "textRu": "Скоро включится красный сигнал", "textUk": "Скоро увімкнеться червоний сигнал", "isCorrect": false, "order": 4 }
+      ]
+    }
+  ]
+}

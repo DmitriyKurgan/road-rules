@@ -88,7 +88,9 @@
       "Bash(curl -s -o /dev/null -w \"Web status: %{http_code}\" http://localhost:3000)",
       "Bash(PGPASSWORD=1234 psql -h localhost -p 5432 -U postgres -d road_rules -c \"SET client_encoding TO 'UTF8'; SELECT id, \\\\\"pddRef\\\\\", \\\\\"questionRu\\\\\", \\\\\"questionUk\\\\\", status FROM tickets WHERE \\\\\"pddRef\\\\\" IN \\('99.1', '99.99'\\) OR \\\\\"questionRu\\\\\" LIKE 'E2E%';\")",
       "Bash(psql -h localhost -p 5432 -U postgres -d road_rules -c ':*)",
-      "Bash(PGPASSWORD=1234 psql -h localhost -p 5432 -U postgres -d road_rules -c \"SELECT \\\\\"pddRef\\\\\", difficulty, status, substring\\(\\\\\"questionRu\\\\\" from 1 for 50\\) as q FROM tickets ORDER BY \\\\\"pddRef\\\\\";\")"
+      "Bash(PGPASSWORD=1234 psql -h localhost -p 5432 -U postgres -d road_rules -c \"SELECT \\\\\"pddRef\\\\\", difficulty, status, substring\\(\\\\\"questionRu\\\\\" from 1 for 50\\) as q FROM tickets ORDER BY \\\\\"pddRef\\\\\";\")",
+      "Bash(psql -h localhost -p 5432 -U postgres -d road_rules -t -A -c ':*)",
+      "Bash(rm -f d:/Work/AI/road-rules/apps/api/uploads/images/*.svg d:/Work/AI/road-rules/apps/api/uploads/images/*.bin d:/Work/AI/road-rules/apps/api/uploads/images/*.jpg d:/Work/AI/road-rules/apps/api/uploads/images/*.png)"
     ],
     "additionalDirectories": [
       "d:\\Work\\AI\\road-rules\\apps\\web\\src\\app\\admin\\tickets"

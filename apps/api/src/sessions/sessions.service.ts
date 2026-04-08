@@ -62,6 +62,7 @@ export class SessionsService {
             ticket: {
               include: {
                 options: { orderBy: { order: "asc" } },
+                images: { include: { image: true } },
               },
             },
             answer: {
@@ -113,6 +114,11 @@ export class SessionsService {
           textUk: o.textUk,
           // Only reveal isCorrect if answer was already submitted
           ...(st.answer ? { isCorrect: o.isCorrect } : {}),
+        })),
+        images: st.ticket.images.map((ti: any) => ({
+          url: `/uploads/images/${ti.image.storedKey}`,
+          title: ti.image.title,
+          attributionHtml: ti.image.attributionHtml,
         })),
         answer: st.answer,
       })),
