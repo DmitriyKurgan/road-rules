@@ -66,11 +66,11 @@ function HistoryContent() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold">{t("totalSessions")}: {history.total}</h1>
+      <h1 className="mb-6 text-2xl font-bold dark:text-white">{t("totalSessions")}: {history.total}</h1>
 
-      <div className="overflow-hidden rounded-lg border">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-gray-50">
+      <div className="overflow-hidden rounded-lg border dark:border-gray-700">
+        <table className="w-full text-left text-sm dark:text-gray-300">
+          <thead className="bg-gray-50 dark:bg-gray-800">
             <tr>
               <th className="px-4 py-3 font-medium text-gray-600">Date</th>
               <th className="px-4 py-3 font-medium text-gray-600">Mode</th>
@@ -91,7 +91,7 @@ function HistoryContent() {
               const seconds = Math.floor((durationMs % 60000) / 1000);
 
               return (
-                <tr key={session.id} className="hover:bg-gray-50">
+                <tr key={session.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
                   <td className="px-4 py-3">
                     {startDate.toLocaleDateString()}{" "}
                     <span className="text-gray-400">

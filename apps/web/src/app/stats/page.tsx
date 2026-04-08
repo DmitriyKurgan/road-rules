@@ -72,7 +72,7 @@ function StatsContent() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="mb-8 text-2xl font-bold">{t("overview")}</h1>
+      <h1 className="mb-8 text-2xl font-bold dark:text-white">{t("overview")}</h1>
 
       {/* Overview cards */}
       <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -142,7 +142,7 @@ function StatsContent() {
             {topicStats.weakest.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-amber-100 px-4 py-1 text-sm text-amber-800"
+                className="rounded-full bg-amber-100 px-4 py-1 text-sm text-amber-800 dark:bg-amber-900/30 dark:text-amber-400"
               >
                 {tag}
               </span>
@@ -156,9 +156,9 @@ function StatsContent() {
 
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="rounded-lg border bg-white p-4 text-center shadow-sm">
-      <div className="text-2xl font-bold text-blue-700">{value}</div>
-      <div className="mt-1 text-sm text-gray-500">{label}</div>
+    <div className="rounded-lg border bg-white p-4 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="text-2xl font-bold text-blue-700 dark:text-blue-400">{value}</div>
+      <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">{label}</div>
     </div>
   );
 }

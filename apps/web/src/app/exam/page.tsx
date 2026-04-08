@@ -24,8 +24,8 @@ export default function ExamPage() {
 
   return (
     <div className="mx-auto mt-20 max-w-lg text-center">
-      <h1 className="mb-2 text-3xl font-bold">{t("exam")}</h1>
-      <p className="mb-8 text-gray-500">
+      <h1 className="mb-2 text-3xl font-bold dark:text-white">{t("exam")}</h1>
+      <p className="mb-8 text-gray-500 dark:text-gray-400">
         {lang === "ru"
           ? "20 вопросов за 20 минут. Допускается не более 2 ошибок."
           : "20 питань за 20 хвилин. Допускається не більше 2 помилок."}
@@ -33,13 +33,13 @@ export default function ExamPage() {
       <div className="mb-6 flex justify-center gap-4">
         <button
           onClick={() => setLang("ru")}
-          className={`rounded px-4 py-2 ${lang === "ru" ? "bg-blue-600 text-white" : "border"}`}
+          className={`rounded px-4 py-2 ${lang === "ru" ? "bg-blue-600 text-white" : "border dark:border-gray-600 dark:text-gray-300"}`}
         >
           Русский
         </button>
         <button
           onClick={() => setLang("uk")}
-          className={`rounded px-4 py-2 ${lang === "uk" ? "bg-blue-600 text-white" : "border"}`}
+          className={`rounded px-4 py-2 ${lang === "uk" ? "bg-blue-600 text-white" : "border dark:border-gray-600 dark:text-gray-300"}`}
         >
           Українська
         </button>

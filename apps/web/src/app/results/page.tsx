@@ -46,7 +46,7 @@ export default function ResultsPage() {
         >
           {passed ? t("passed") : t("failed")}
         </div>
-        <div className="mt-2 text-gray-500">
+        <div className="mt-2 text-gray-500 dark:text-gray-400">
           {t("score")}: {score}% &middot; {minutes}:{String(seconds).padStart(2, "0")}
         </div>
       </div>
@@ -54,17 +54,17 @@ export default function ResultsPage() {
       {/* Errors */}
       {errors.length > 0 && (
         <div className="mb-8">
-          <h2 className="mb-4 text-lg font-semibold text-gray-800">
+          <h2 className="mb-4 text-lg font-semibold text-gray-800 dark:text-gray-200">
             {t("errors")} ({errors.length})
           </h2>
           <div className="space-y-3">
             {errors.map((err, i) => (
               <div
                 key={i}
-                className="rounded-lg border border-red-200 bg-red-50 p-4"
+                className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-red-700">
+                  <span className="text-sm font-medium text-red-700 dark:text-red-400">
                     {t("pddReference")}: {err.pddRef}
                   </span>
                   <span className="text-xs text-gray-400">
@@ -87,7 +87,7 @@ export default function ResultsPage() {
         </button>
         <Link
           href="/stats"
-          className="rounded border border-gray-300 px-6 py-3 text-gray-700 hover:bg-gray-50"
+          className="rounded border border-gray-300 px-6 py-3 text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
         >
           {tc("stats")}
         </Link>

@@ -31,8 +31,8 @@ export default function AdminLayout({
   return (
     <ProtectedRoute>
       <div className="flex min-h-[calc(100vh-120px)]">
-        <aside className="w-56 border-r bg-gray-50 p-4">
-          <h2 className="mb-4 text-lg font-bold text-gray-800">Admin</h2>
+        <aside className="w-56 border-r bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
+          <h2 className="mb-4 text-lg font-bold text-gray-800 dark:text-white">Admin</h2>
           <nav className="space-y-1">
             {navItems.map((item) => {
               const isActive =
@@ -44,8 +44,8 @@ export default function AdminLayout({
                   href={item.href}
                   className={`block rounded px-3 py-2 text-sm ${
                     isActive
-                      ? "bg-blue-100 font-medium text-blue-700"
-                      : "text-gray-600 hover:bg-gray-100"
+                      ? "bg-blue-100 font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                      : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
                   }`}
                 >
                   {item.label}

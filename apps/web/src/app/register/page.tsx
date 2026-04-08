@@ -31,16 +31,16 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="mx-auto mt-20 max-w-md rounded-lg border p-8 shadow">
-      <h1 className="mb-6 text-2xl font-bold">{t("registerTitle")}</h1>
-      {error && <p className="mb-4 rounded bg-red-50 p-3 text-sm text-red-600">{error}</p>}
+    <div className="mx-auto mt-20 max-w-md rounded-lg border p-8 shadow dark:border-gray-700 dark:bg-gray-800">
+      <h1 className="mb-6 text-2xl font-bold dark:text-white">{t("registerTitle")}</h1>
+      {error && <p className="mb-4 rounded bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/30">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t("email")}
-          className="w-full rounded border px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="w-full rounded border px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           required
         />
         <input
@@ -48,7 +48,7 @@ export default function RegisterPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder={t("password")}
-          className="w-full rounded border px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="w-full rounded border px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           minLength={6}
           required
         />
@@ -60,9 +60,9 @@ export default function RegisterPage() {
           {loading ? tc("loading") : t("registerTitle")}
         </button>
       </form>
-      <p className="mt-4 text-center text-sm text-gray-500">
+      <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
         {t("hasAccount")}{" "}
-        <Link href="/login" className="text-blue-600 hover:underline">
+        <Link href="/login" className="text-blue-600 hover:underline dark:text-blue-400">
           {t("loginTitle")}
         </Link>
       </p>

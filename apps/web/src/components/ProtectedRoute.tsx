@@ -20,7 +20,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (isLoading) {
     return (
-      <div className="mt-20 text-center text-gray-500">{t("loading")}</div>
+      <div className="mt-20 text-center text-gray-500 dark:text-gray-400">{t("loading")}</div>
     );
   }
 

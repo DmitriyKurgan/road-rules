@@ -66,27 +66,27 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
 
   const getOptionStyle = (optionId: string) => {
     if (!answered) {
-      return "border-gray-300 hover:border-blue-400 hover:bg-blue-50 cursor-pointer";
+      return "border-gray-300 hover:border-blue-400 hover:bg-blue-50 cursor-pointer dark:border-gray-600 dark:hover:border-blue-500 dark:hover:bg-gray-700";
     }
     if (optionId === lastAnswer.correctOptionId) {
-      return "border-green-500 bg-green-50";
+      return "border-green-500 bg-green-50 dark:bg-green-900/30";
     }
     if (optionId === selectedId && !lastAnswer.isCorrect) {
-      return "border-red-500 bg-red-50";
+      return "border-red-500 bg-red-50 dark:bg-red-900/30";
     }
-    return "border-gray-200 opacity-60";
+    return "border-gray-200 opacity-60 dark:border-gray-700";
   };
 
   const questionText = lang === "uk" ? ticket.question.uk : ticket.question.ru;
 
   return (
-    <div className="rounded-lg border bg-white p-6 shadow-sm">
+    <div className="rounded-lg border bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
       {/* Question */}
       <div className="mb-6">
-        <p className="mb-1 text-xs text-gray-400">
+        <p className="mb-1 text-xs text-gray-400 dark:text-gray-500">
           {t("pddReference")}: {ticket.pddRef}
         </p>
-        <h2 className="text-lg font-semibold text-gray-900">{questionText}</h2>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{questionText}</h2>
       </div>
 
       {/* Image */}
@@ -116,10 +116,10 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
               disabled={answered || isSubmitting}
               className={`flex w-full items-start gap-3 rounded-lg border-2 p-4 text-left transition-colors ${getOptionStyle(option.id)}`}
             >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-gray-300 text-sm font-bold text-gray-500">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-gray-300 text-sm font-bold text-gray-500 dark:border-gray-600 dark:text-gray-400">
                 {String.fromCharCode(64 + option.order)}
               </span>
-              <span className="text-gray-800">{text}</span>
+              <span className="text-gray-800 dark:text-gray-200">{text}</span>
               {answered && option.id === lastAnswer.correctOptionId && (
                 <span className="ml-auto text-green-600">&#10003;</span>
               )}
@@ -136,14 +136,14 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
       {/* Answer feedback */}
       {answered && (
         <div
-          className={`mb-6 rounded-lg p-4 ${lastAnswer.isCorrect ? "bg-green-50" : "bg-amber-50"}`}
+          className={`mb-6 rounded-lg p-4 ${lastAnswer.isCorrect ? "bg-green-50 dark:bg-green-900/20" : "bg-amber-50 dark:bg-amber-900/20"}`}
         >
           <p
-            className={`mb-1 font-semibold ${lastAnswer.isCorrect ? "text-green-700" : "text-amber-700"}`}
+            className={`mb-1 font-semibold ${lastAnswer.isCorrect ? "text-green-700 dark:text-green-400" : "text-amber-700 dark:text-amber-400"}`}
           >
             {lastAnswer.isCorrect ? t("correctAnswer") : t("explanation")}
           </p>
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             {lang === "uk"
               ? lastAnswer.explanation.uk
               : lastAnswer.explanation.ru}
