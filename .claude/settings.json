@@ -110,7 +110,9 @@
       "Bash(find /d/Work/AI/road-rules/apps/api/src -name \"*.ts\" -exec grep -l \"catch\" {} \\\\;)",
       "WebFetch(domain:road-rules-api.onrender.com)",
       "Bash(curl -s https://road-rules-api.onrender.com/api/health)",
-      "Bash(curl -sv https://road-rules-api.onrender.com/api/health)"
+      "Bash(curl -sv https://road-rules-api.onrender.com/api/health)",
+      "Bash(curl -s https://road-rules-api.onrender.com/api/tickets)",
+      "Bash(GITHUB_PAGES=true pnpm --filter @road-rules/web run build)"
     ],
     "additionalDirectories": [
       "d:\\Work\\AI\\road-rules\\apps\\web\\src\\app\\admin\\tickets",
