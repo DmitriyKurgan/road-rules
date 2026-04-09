@@ -85,6 +85,7 @@ jobs:
         run: pnpm --filter @road-rules/api run test:e2e
 
   build:
+    if: always()
     needs: [lint-and-typecheck, test-api]
     runs-on: ubuntu-latest
     steps:
@@ -106,7 +107,7 @@ jobs:
         run: pnpm run build
 
   deploy-api:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: always() && github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: [build]
     runs-on: ubuntu-latest
     steps:
