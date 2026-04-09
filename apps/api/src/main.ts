@@ -11,6 +11,7 @@ async function bootstrap() {
   // Serve uploaded images as static files
   app.useStaticAssets(path.resolve("uploads"), { prefix: "/uploads" });
 
+  app.useBodyParser("json", { limit: "10mb" });
   app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
   app.enableCors({
     origin: process.env.CORS_ORIGIN || "http://localhost:3000",

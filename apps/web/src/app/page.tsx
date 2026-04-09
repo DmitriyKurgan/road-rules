@@ -1,29 +1,67 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const t = useTranslations("common");
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-8 px-4 py-16">
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-white">{t("appName")}</h1>
-      <p className="max-w-md text-center text-lg text-gray-600 dark:text-gray-400">
-        {t("practice")} / {t("exam")}
-      </p>
-      <div className="flex gap-4">
+    <div className="flex flex-1 flex-col items-center justify-center px-4 py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center"
+      >
+        <h1 className="mb-4 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
+          {t("appName")}
+        </h1>
+        <p className="mx-auto mb-10 max-w-md text-lg text-[var(--text-secondary)]">
+          {t("practice")} & {t("exam")}
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        className="flex flex-col gap-4 sm:flex-row"
+      >
         <Link
           href="/practice"
-          className="rounded-lg bg-blue-600 px-8 py-3 text-lg font-medium text-white hover:bg-blue-700"
+          className="spring-transition group relative overflow-hidden rounded-xl bg-teal-600 px-10 py-4 text-lg font-semibold text-white hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-500/25"
         >
-          {t("practice")}
+          <span className="relative z-10">{t("practice")}</span>
+          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
         </Link>
         <Link
           href="/exam"
-          className="rounded-lg border border-blue-600 px-8 py-3 text-lg font-medium text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-gray-800"
+          className="spring-transition glass-card px-10 py-4 text-center text-lg font-semibold text-[var(--text-primary)] hover:shadow-xl"
         >
           {t("exam")}
         </Link>
-      </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-20 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3"
+      >
+        {[
+          { icon: "📝", title: "52+", sub: "Questions" },
+          { icon: "⏱", title: "20 min", sub: "Exam mode" },
+          { icon: "🌐", title: "RU / UA", sub: "Bilingual" },
+        ].map((f, i) => (
+          <div key={i} className="glass-card spring-transition p-6 text-center hover:scale-[1.02]">
+            <div className="mb-2 text-2xl">{f.icon}</div>
+            <div className="text-xl font-bold text-[var(--text-primary)]">{f.title}</div>
+            <div className="text-sm text-[var(--text-muted)]">{f.sub}</div>
+          </div>
+        ))}
+      </motion.div>
     </div>
   );
 }

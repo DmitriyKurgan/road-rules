@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { AnimatePresence } from "framer-motion";
 import { useQuizStore } from "@/store/quiz";
 import { TicketCard } from "@/components/quiz/TicketCard";
 import { QuizProgress } from "@/components/quiz/QuizProgress";
@@ -13,15 +14,11 @@ export default function QuizPage() {
     useQuizStore();
 
   useEffect(() => {
-    if (!sessionId) {
-      router.push("/");
-    }
+    if (!sessionId) router.push("/");
   }, [sessionId, router]);
 
   useEffect(() => {
-    if (isFinished) {
-      router.push("/results");
-    }
+    if (isFinished) router.push("/results");
   }, [isFinished, router]);
 
   if (!sessionId || tickets.length === 0) return null;
@@ -37,12 +34,18 @@ export default function QuizPage() {
   if (!currentTicket) return null;
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <div className="mb-6 flex items-center justify-between">
+    <div className="mx-auto flex max-w-[680px] flex-col px-3 py-3 sm:px-4 sm:py-4">
+      <div className="mb-3 flex items-center justify-between">
         <QuizProgress current={currentIndex + 1} total={tickets.length} />
         {mode === "EXAM" && <QuizTimer onTimeout={handleTimeout} />}
       </div>
-      <TicketCard ticket={currentTicket} isLast={isLastTicket} />
+      <AnimatePresence mode="wait">
+        <TicketCard
+          key={currentTicket.ticketId}
+          ticket={currentTicket}
+          isLast={isLastTicket}
+        />
+      </AnimatePresence>
     </div>
   );
 }

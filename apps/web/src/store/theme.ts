@@ -17,7 +17,11 @@ export const useThemeStore = create<ThemeState>((set, get) => ({
   setTheme: (theme) => {
     if (typeof window !== "undefined") {
       localStorage.setItem("theme", theme);
-      document.documentElement.classList.toggle("dark", theme === "dark");
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
     set({ theme });
   },

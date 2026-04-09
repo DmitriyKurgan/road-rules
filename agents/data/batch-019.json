@@ -1,0 +1,904 @@
+{
+  "tickets": [
+    {
+      "questionRu": "Что должен сделать водитель в первую очередь при ДТП?",
+      "questionUk": "Що повинен зробити водій у першу чергу при ДТП?",
+      "explanationRu": "При ДТП водитель обязан немедленно остановить транспортное средство, включить аварийную световую сигнализацию и не перемещать транспортное средство с места ДТП.",
+      "explanationUk": "При ДТП водій зобов'язаний негайно зупинити транспортний засіб, увімкнути аварійну світлову сигналізацію та не переміщати транспортний засіб з місця ДТП.",
+      "pddRef": "2.9",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-acc-001",
+      "imageBrief": "Car stopped at accident scene with hazard lights on",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Немедленно остановить ТС и включить аварийную сигнализацию", "textUk": "Негайно зупинити ТЗ та увімкнути аварійну сигналізацію", "isCorrect": true, "order": 1},
+        {"textRu": "Убрать автомобиль с проезжей части", "textUk": "Прибрати автомобіль з проїзної частини", "isCorrect": false, "order": 2},
+        {"textRu": "Немедленно вызвать только страховую компанию", "textUk": "Негайно викликати тільки страхову компанію", "isCorrect": false, "order": 3},
+        {"textRu": "Продолжить движение до ближайшего безопасного места", "textUk": "Продовжити рух до найближчого безпечного місця", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Где следует установить знак аварийной остановки при ДТП в населённом пункте?",
+      "questionUk": "Де слід встановити знак аварійної зупинки при ДТП у населеному пункті?",
+      "explanationRu": "В населённом пункте знак аварийной остановки устанавливается на расстоянии не менее 20 метров от транспортного средства.",
+      "explanationUk": "У населеному пункті знак аварійної зупинки встановлюється на відстані не менше 20 метрів від транспортного засобу.",
+      "pddRef": "2.9",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-acc-002",
+      "imageBrief": "Warning triangle placed 20 meters behind a stopped car in a city",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Не менее 20 метров от ТС", "textUk": "Не менше 20 метрів від ТЗ", "isCorrect": true, "order": 1},
+        {"textRu": "Не менее 40 метров от ТС", "textUk": "Не менше 40 метрів від ТЗ", "isCorrect": false, "order": 2},
+        {"textRu": "Не менее 10 метров от ТС", "textUk": "Не менше 10 метрів від ТЗ", "isCorrect": false, "order": 3},
+        {"textRu": "Не менее 50 метров от ТС", "textUk": "Не менше 50 метрів від ТЗ", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "На каком расстоянии устанавливается знак аварийной остановки на загородной дороге?",
+      "questionUk": "На якій відстані встановлюється знак аварійної зупинки на позаміській дорозі?",
+      "explanationRu": "За пределами населённого пункта знак аварийной остановки устанавливается не менее чем в 40 метрах от места ДТП.",
+      "explanationUk": "За межами населеного пункту знак аварійної зупинки встановлюється не менше ніж у 40 метрах від місця ДТП.",
+      "pddRef": "2.9",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-acc-003",
+      "imageBrief": "Warning triangle placed 40 meters behind a stopped car on a highway",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Не менее 40 метров от ТС", "textUk": "Не менше 40 метрів від ТЗ", "isCorrect": true, "order": 1},
+        {"textRu": "Не менее 20 метров от ТС", "textUk": "Не менше 20 метрів від ТЗ", "isCorrect": false, "order": 2},
+        {"textRu": "Не менее 30 метров от ТС", "textUk": "Не менше 30 метрів від ТЗ", "isCorrect": false, "order": 3},
+        {"textRu": "Не менее 100 метров от ТС", "textUk": "Не менше 100 метрів від ТЗ", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что нужно сделать после остановки и включения аварийной сигнализации при ДТП?",
+      "questionUk": "Що потрібно зробити після зупинки та увімкнення аварійної сигналізації при ДТП?",
+      "explanationRu": "После остановки и включения аварийной сигнализации водитель обязан выставить знак аварийной остановки и сообщить о ДТП в полицию.",
+      "explanationUk": "Після зупинки та увімкнення аварійної сигналізації водій зобов'язаний виставити знак аварійної зупинки та повідомити про ДТП поліцію.",
+      "pddRef": "2.9",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-acc-004",
+      "imageBrief": "Driver calling police after accident with warning triangle visible",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Выставить знак аварийной остановки и сообщить в полицию", "textUk": "Виставити знак аварійної зупинки та повідомити поліцію", "isCorrect": true, "order": 1},
+        {"textRu": "Самостоятельно составить схему ДТП и уехать", "textUk": "Самостійно скласти схему ДТП та поїхати", "isCorrect": false, "order": 2},
+        {"textRu": "Ждать, пока другие водители сообщат о происшествии", "textUk": "Чекати, поки інші водії повідомлять про подію", "isCorrect": false, "order": 3},
+        {"textRu": "Убрать ТС с дороги и позвонить в страховую", "textUk": "Прибрати ТЗ з дороги та зателефонувати до страхової", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Обязан ли водитель, не причастный к ДТП, остановиться и оказать помощь пострадавшим?",
+      "questionUk": "Чи зобов'язаний водій, не причетний до ДТП, зупинитись і надати допомогу постраждалим?",
+      "explanationRu": "Водитель, ставший свидетелем ДТП, обязан остановиться и по возможности оказать первую помощь пострадавшим, сообщив также в экстренные службы.",
+      "explanationUk": "Водій, що став свідком ДТП, зобов'язаний зупинитися та за можливості надати першу допомогу постраждалим, також повідомивши екстрені служби.",
+      "pddRef": "2.9",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-acc-005",
+      "imageBrief": "Bystander helping injured person at accident scene",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Да, обязан остановиться и при возможности оказать помощь", "textUk": "Так, зобов'язаний зупинитись і за можливості надати допомогу", "isCorrect": true, "order": 1},
+        {"textRu": "Нет, это обязанность только участников ДТП", "textUk": "Ні, це обов'язок лише учасників ДТП", "isCorrect": false, "order": 2},
+        {"textRu": "Только если есть медицинское образование", "textUk": "Тільки якщо є медична освіта", "isCorrect": false, "order": 3},
+        {"textRu": "Нет, достаточно сообщить о ДТП по телефону", "textUk": "Ні, достатньо повідомити про ДТП по телефону", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "По какому номеру вызывается скорая медицинская помощь в Украине?",
+      "questionUk": "За яким номером викликається швидка медична допомога в Україні?",
+      "explanationRu": "В Украине скорая медицинская помощь вызывается по номеру 103.",
+      "explanationUk": "В Україні швидка медична допомога викликається за номером 103.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-phone-006",
+      "imageBrief": "Phone showing emergency number 103 for ambulance",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "103", "textUk": "103", "isCorrect": true, "order": 1},
+        {"textRu": "102", "textUk": "102", "isCorrect": false, "order": 2},
+        {"textRu": "101", "textUk": "101", "isCorrect": false, "order": 3},
+        {"textRu": "112", "textUk": "112", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "По какому номеру следует вызывать полицию в Украине?",
+      "questionUk": "За яким номером слід викликати поліцію в Україні?",
+      "explanationRu": "Полиция в Украине вызывается по номеру 102.",
+      "explanationUk": "Поліція в Україні викликається за номером 102.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-phone-007",
+      "imageBrief": "Phone showing emergency number 102 for police",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "102", "textUk": "102", "isCorrect": true, "order": 1},
+        {"textRu": "103", "textUk": "103", "isCorrect": false, "order": 2},
+        {"textRu": "101", "textUk": "101", "isCorrect": false, "order": 3},
+        {"textRu": "104", "textUk": "104", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "По какому номеру вызывается пожарная служба в Украине?",
+      "questionUk": "За яким номером викликається пожежна служба в Україні?",
+      "explanationRu": "Пожарная охрана (служба спасения) в Украине вызывается по номеру 101.",
+      "explanationUk": "Пожежна охорона (служба порятунку) в Україні викликається за номером 101.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-phone-008",
+      "imageBrief": "Phone showing emergency number 101 for fire department",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "101", "textUk": "101", "isCorrect": true, "order": 1},
+        {"textRu": "102", "textUk": "102", "isCorrect": false, "order": 2},
+        {"textRu": "103", "textUk": "103", "isCorrect": false, "order": 3},
+        {"textRu": "104", "textUk": "104", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Какой единый номер экстренных служб действует в Украине?",
+      "questionUk": "Який єдиний номер екстрених служб діє в Україні?",
+      "explanationRu": "Единый номер экстренной помощи в Украине — 112. Он позволяет связаться со всеми экстренными службами.",
+      "explanationUk": "Єдиний номер екстреної допомоги в Україні — 112. Він дозволяє зв'язатися з усіма екстреними службами.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-phone-009",
+      "imageBrief": "Phone dialing 112 universal emergency number",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "112", "textUk": "112", "isCorrect": true, "order": 1},
+        {"textRu": "911", "textUk": "911", "isCorrect": false, "order": 2},
+        {"textRu": "999", "textUk": "999", "isCorrect": false, "order": 3},
+        {"textRu": "000", "textUk": "000", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что нужно сообщить диспетчеру при вызове скорой помощи на место ДТП?",
+      "questionUk": "Що потрібно повідомити диспетчеру при виклику швидкої допомоги на місце ДТП?",
+      "explanationRu": "При вызове скорой помощи необходимо сообщить точный адрес (местоположение), количество и состояние пострадавших, а также свой номер телефона.",
+      "explanationUk": "При виклику швидкої допомоги необхідно повідомити точну адресу (місцезнаходження), кількість та стан постраждалих, а також свій номер телефону.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-phone-010",
+      "imageBrief": "Person calling emergency services and describing location",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Точное место, число пострадавших, их состояние и свой телефон", "textUk": "Точне місце, кількість постраждалих, їх стан та свій телефон", "isCorrect": true, "order": 1},
+        {"textRu": "Только адрес происшествия", "textUk": "Тільки адресу події", "isCorrect": false, "order": 2},
+        {"textRu": "Только количество пострадавших", "textUk": "Тільки кількість постраждалих", "isCorrect": false, "order": 3},
+        {"textRu": "Название ближайшей улицы и модель автомобиля", "textUk": "Назву найближчої вулиці та модель автомобіля", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как определить артериальное кровотечение?",
+      "questionUk": "Як визначити артеріальну кровотечу?",
+      "explanationRu": "Артериальное кровотечение характеризуется ярко-алой кровью, вытекающей пульсирующей струёй. Это наиболее опасный вид кровотечения.",
+      "explanationUk": "Артеріальна кровотеча характеризується яскраво-червоною кров'ю, що витікає пульсуючим струменем. Це найнебезпечніший вид кровотечі.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-bleed-011",
+      "imageBrief": "Illustration showing bright red pulsating arterial bleeding",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Ярко-алая кровь, вытекающая пульсирующей струёй", "textUk": "Яскраво-червона кров, що витікає пульсуючим струменем", "isCorrect": true, "order": 1},
+        {"textRu": "Тёмная кровь, медленно вытекающая из раны", "textUk": "Темна кров, що повільно витікає з рани", "isCorrect": false, "order": 2},
+        {"textRu": "Кровь розового цвета, пенящаяся при дыхании", "textUk": "Кров рожевого кольору, що пінеться при диханні", "isCorrect": false, "order": 3},
+        {"textRu": "Кровь, сочащаяся из всей поверхности раны", "textUk": "Кров, що сочиться з усієї поверхні рани", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как остановить артериальное кровотечение конечности?",
+      "questionUk": "Як зупинити артеріальну кровотечу кінцівки?",
+      "explanationRu": "При артериальном кровотечении конечности необходимо наложить кровоостанавливающий жгут выше места ранения. Время наложения жгута нужно записать.",
+      "explanationUk": "При артеріальній кровотечі кінцівки необхідно накласти кровоспинний джгут вище місця поранення. Час накладання джгута потрібно записати.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-bleed-012",
+      "imageBrief": "Tourniquet applied above wound on arm with time noted",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Наложить жгут выше места ранения и записать время", "textUk": "Накласти джгут вище місця поранення та записати час", "isCorrect": true, "order": 1},
+        {"textRu": "Наложить жгут ниже места ранения", "textUk": "Накласти джгут нижче місця поранення", "isCorrect": false, "order": 2},
+        {"textRu": "Приложить холод к ране и ждать скорую", "textUk": "Прикласти холод до рани і чекати швидку", "isCorrect": false, "order": 3},
+        {"textRu": "Промыть рану водой и перевязать", "textUk": "Промити рану водою та перев'язати", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "На какое максимальное время можно накладывать жгут летом?",
+      "questionUk": "На який максимальний час можна накладати джгут влітку?",
+      "explanationRu": "Летом жгут накладывается не более чем на 1 час (60 минут), зимой — не более 30 минут. Каждые 30 минут жгут нужно ослаблять на 10–15 минут.",
+      "explanationUk": "Влітку джгут накладається не більше ніж на 1 годину (60 хвилин), взимку — не більше 30 хвилин. Кожні 30 хвилин джгут потрібно послаблювати на 10–15 хвилин.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-bleed-013",
+      "imageBrief": "Tourniquet on arm with clock showing 1 hour time limit in summer",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Не более 1 часа (60 минут)", "textUk": "Не більше 1 години (60 хвилин)", "isCorrect": true, "order": 1},
+        {"textRu": "Не более 30 минут", "textUk": "Не більше 30 хвилин", "isCorrect": false, "order": 2},
+        {"textRu": "Не более 2 часов", "textUk": "Не більше 2 годин", "isCorrect": false, "order": 3},
+        {"textRu": "Не более 3 часов", "textUk": "Не більше 3 годин", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как оказать помощь при венозном кровотечении?",
+      "questionUk": "Як надати допомогу при венозній кровотечі?",
+      "explanationRu": "При венозном кровотечении накладывается давящая (тугая) повязка непосредственно на рану. Жгут при венозном кровотечении не применяется.",
+      "explanationUk": "При венозній кровотечі накладається тиснуча (тугий) пов'язка безпосередньо на рану. Джгут при венозній кровотечі не застосовується.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-bleed-014",
+      "imageBrief": "Pressure bandage applied directly on a wound for venous bleeding",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Наложить давящую повязку непосредственно на рану", "textUk": "Накласти тиснучу пов'язку безпосередньо на рану", "isCorrect": true, "order": 1},
+        {"textRu": "Наложить жгут выше места кровотечения", "textUk": "Накласти джгут вище місця кровотечі", "isCorrect": false, "order": 2},
+        {"textRu": "Прижать рану рукой и ждать врача", "textUk": "Притиснути рану рукою і чекати лікаря", "isCorrect": false, "order": 3},
+        {"textRu": "Опустить конечность вниз для замедления кровотока", "textUk": "Опустити кінцівку донизу для уповільнення кровотоку", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что категорически запрещено делать при артериальном кровотечении из конечности?",
+      "questionUk": "Що категорично заборонено робити при артеріальній кровотечі з кінцівки?",
+      "explanationRu": "Категорически запрещается накладывать жгут ниже места ранения — это не остановит артериальное кровотечение и лишь ухудшит состояние пострадавшего.",
+      "explanationUk": "Категорично заборонено накладати джгут нижче місця поранення — це не зупинить артеріальну кровотечу і лише погіршить стан постраждалого.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-bleed-015",
+      "imageBrief": "Wrong tourniquet placement below wound — crossed out warning",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Накладывать жгут ниже места ранения", "textUk": "Накладати джгут нижче місця поранення", "isCorrect": true, "order": 1},
+        {"textRu": "Записывать время наложения жгута", "textUk": "Записувати час накладання джгута", "isCorrect": false, "order": 2},
+        {"textRu": "Поднять конечность вверх", "textUk": "Підняти кінцівку вгору", "isCorrect": false, "order": 3},
+        {"textRu": "Вызывать скорую помощь", "textUk": "Викликати швидку допомогу", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как оказать первую помощь при подозрении на перелом конечности?",
+      "questionUk": "Як надати першу допомогу при підозрі на перелом кінцівки?",
+      "explanationRu": "При подозрении на перелом необходимо обездвижить (иммобилизировать) конечность с помощью шины или подручных средств, не пытаясь вправить кость.",
+      "explanationUk": "При підозрі на перелом необхідно знерухомити (іммобілізувати) кінцівку за допомогою шини або підручних засобів, не намагаючись вправити кістку.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-frac-016",
+      "imageBrief": "Splint applied to broken arm for immobilization",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Иммобилизировать конечность шиной, не вправляя кость", "textUk": "Іммобілізувати кінцівку шиною, не вправляючи кістку", "isCorrect": true, "order": 1},
+        {"textRu": "Вправить кость на место и наложить тугую повязку", "textUk": "Вправити кістку на місце та накласти тугу пов'язку", "isCorrect": false, "order": 2},
+        {"textRu": "Разработать сустав движениями", "textUk": "Розробити суглоб рухами", "isCorrect": false, "order": 3},
+        {"textRu": "Приложить тепло к месту перелома", "textUk": "Прикласти тепло до місця перелому", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что нельзя делать при открытом переломе?",
+      "questionUk": "Що не можна робити при відкритому переломі?",
+      "explanationRu": "При открытом переломе категорически нельзя вправлять торчащие кости обратно в рану — это может вызвать серьёзные осложнения и инфекцию.",
+      "explanationUk": "При відкритому переломі категорично не можна вправляти кістки, що стирчать, назад у рану — це може спричинити серйозні ускладнення та інфекцію.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-frac-017",
+      "imageBrief": "Open fracture — do not push bone back in, cover with sterile bandage",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Вправлять выступающие кости обратно в рану", "textUk": "Вправляти кістки, що стирчать, назад у рану", "isCorrect": true, "order": 1},
+        {"textRu": "Накрыть рану стерильной повязкой", "textUk": "Накрити рану стерильною пов'язкою", "isCorrect": false, "order": 2},
+        {"textRu": "Иммобилизировать конечность шиной", "textUk": "Іммобілізувати кінцівку шиною", "isCorrect": false, "order": 3},
+        {"textRu": "Вызвать скорую помощь", "textUk": "Викликати швидку допомогу", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как правильно наложить шину при переломе голени?",
+      "questionUk": "Як правильно накласти шину при переломі гомілки?",
+      "explanationRu": "Шина при переломе голени должна захватывать два смежных сустава (коленный и голеностопный) и накладываться поверх одежды с мягкой прокладкой.",
+      "explanationUk": "Шина при переломі гомілки повинна захоплювати два суміжних суглоби (колінний і гомілковостопний) та накладатися поверх одягу з м'якою прокладкою.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-frac-018",
+      "imageBrief": "Splint on lower leg covering knee and ankle joints",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Фиксировать два соседних сустава поверх одежды с прокладкой", "textUk": "Фіксувати два сусідніх суглоби поверх одягу з прокладкою", "isCorrect": true, "order": 1},
+        {"textRu": "Фиксировать только место перелома", "textUk": "Фіксувати тільки місце перелому", "isCorrect": false, "order": 2},
+        {"textRu": "Накладывать шину непосредственно на кожу без прокладки", "textUk": "Накладати шину безпосередньо на шкіру без прокладки", "isCorrect": false, "order": 3},
+        {"textRu": "Захватывать только один сустав выше места перелома", "textUk": "Захоплювати тільки один суглоб вище місця перелому", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как обездвижить пострадавшего при подозрении на перелом позвоночника?",
+      "questionUk": "Як знерухомити постраждалого при підозрі на перелом хребта?",
+      "explanationRu": "При подозрении на перелом позвоночника пострадавшего нужно уложить на твёрдую ровную поверхность, не сгибая и не скручивая позвоночник.",
+      "explanationUk": "При підозрі на перелом хребта постраждалого потрібно покласти на тверду рівну поверхню, не згинаючи і не скручуючи хребет.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-frac-019",
+      "imageBrief": "Injured person placed flat on hard board for spine injury",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Уложить на твёрдую поверхность без скручивания позвоночника", "textUk": "Покласти на тверду поверхню без скручування хребта", "isCorrect": true, "order": 1},
+        {"textRu": "Посадить пострадавшего для облегчения дыхания", "textUk": "Посадити постраждалого для полегшення дихання", "isCorrect": false, "order": 2},
+        {"textRu": "Транспортировать пострадавшего в любое положение", "textUk": "Транспортувати постраждалого у будь-яке положення", "isCorrect": false, "order": 3},
+        {"textRu": "Согнуть ноги в коленях для уменьшения боли", "textUk": "Зігнути ноги в колінах для зменшення болю", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "При каком виде перелома перемещение пострадавшего особенно опасно?",
+      "questionUk": "При якому виді перелому переміщення постраждалого особливо небезпечне?",
+      "explanationRu": "Перемещение пострадавшего с переломом позвоночника особенно опасно, так как может привести к повреждению спинного мозга и параличу.",
+      "explanationUk": "Переміщення постраждалого з переломом хребта особливо небезпечне, оскільки може призвести до пошкодження спинного мозку та паралічу.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-frac-020",
+      "imageBrief": "Warning sign — do not move spine injury victim",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "При переломе позвоночника", "textUk": "При переломі хребта", "isCorrect": true, "order": 1},
+        {"textRu": "При переломе руки", "textUk": "При переломі руки", "isCorrect": false, "order": 2},
+        {"textRu": "При переломе ноги", "textUk": "При переломі ноги", "isCorrect": false, "order": 3},
+        {"textRu": "При переломе ребра", "textUk": "При переломі ребра", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Какова правильная частота нажатий при сердечно-лёгочной реанимации (СЛР)?",
+      "questionUk": "Яка правильна частота натискань при серцево-легеневій реанімації (СЛР)?",
+      "explanationRu": "При проведении СЛР частота компрессий грудной клетки должна составлять 100–120 нажатий в минуту.",
+      "explanationUk": "При проведенні СЛР частота компресій грудної клітки повинна становити 100–120 натискань на хвилину.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-cpr-021",
+      "imageBrief": "CPR chest compressions at 100-120 per minute rate",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "100–120 нажатий в минуту", "textUk": "100–120 натискань на хвилину", "isCorrect": true, "order": 1},
+        {"textRu": "60–80 нажатий в минуту", "textUk": "60–80 натискань на хвилину", "isCorrect": false, "order": 2},
+        {"textRu": "50–60 нажатий в минуту", "textUk": "50–60 натискань на хвилину", "isCorrect": false, "order": 3},
+        {"textRu": "150–180 нажатий в минуту", "textUk": "150–180 натискань на хвилину", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Какое соотношение компрессий и вдохов используется при СЛР взрослому?",
+      "questionUk": "Яке співвідношення компресій та вдихів використовується при СЛР дорослому?",
+      "explanationRu": "При проведении СЛР взрослому используется соотношение 30 компрессий к 2 вдохам (30:2).",
+      "explanationUk": "При проведенні СЛР дорослому використовується співвідношення 30 компресій до 2 вдихів (30:2).",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-cpr-022",
+      "imageBrief": "CPR 30 compressions to 2 breaths ratio diagram",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "30 компрессий и 2 вдоха", "textUk": "30 компресій та 2 вдихи", "isCorrect": true, "order": 1},
+        {"textRu": "15 компрессий и 2 вдоха", "textUk": "15 компресій та 2 вдихи", "isCorrect": false, "order": 2},
+        {"textRu": "10 компрессий и 1 вдох", "textUk": "10 компресій та 1 вдих", "isCorrect": false, "order": 3},
+        {"textRu": "20 компрессий и 4 вдоха", "textUk": "20 компресій та 4 вдихи", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Куда нужно класть руки при выполнении непрямого массажа сердца?",
+      "questionUk": "Куди потрібно класти руки при виконанні непрямого масажу серця?",
+      "explanationRu": "Руки при непрямом массаже сердца кладутся на нижнюю треть грудины (центр грудной клетки), одна ладонь на другую.",
+      "explanationUk": "Руки при непрямому масажі серця кладуться на нижню третину груднини (центр грудної клітки), одна долоня на іншу.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-cpr-023",
+      "imageBrief": "Hands placed on center of chest lower sternum for CPR",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "На нижнюю треть грудины (центр грудной клетки)", "textUk": "На нижню третину груднини (центр грудної клітки)", "isCorrect": true, "order": 1},
+        {"textRu": "На верхнюю часть грудины", "textUk": "На верхню частину груднини", "isCorrect": false, "order": 2},
+        {"textRu": "На левую сторону грудной клетки (над сердцем)", "textUk": "На ліву сторону грудної клітки (над серцем)", "isCorrect": false, "order": 3},
+        {"textRu": "На живот пострадавшего", "textUk": "На живіт постраждалого", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "На какую глубину нужно нажимать на грудную клетку при СЛР взрослому?",
+      "questionUk": "На яку глибину потрібно натискати на грудну клітку при СЛР дорослому?",
+      "explanationRu": "При выполнении СЛР взрослому грудная клетка должна прогибаться на 5–6 сантиметров при каждом нажатии.",
+      "explanationUk": "При виконанні СЛР дорослому грудна клітка повинна прогинатися на 5–6 сантиметрів при кожному натисканні.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-cpr-024",
+      "imageBrief": "CPR compression depth 5-6 cm shown with measurement indicator",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "5–6 сантиметров", "textUk": "5–6 сантиметрів", "isCorrect": true, "order": 1},
+        {"textRu": "2–3 сантиметра", "textUk": "2–3 сантиметри", "isCorrect": false, "order": 2},
+        {"textRu": "10–12 сантиметров", "textUk": "10–12 сантиметрів", "isCorrect": false, "order": 3},
+        {"textRu": "1–2 сантиметра", "textUk": "1–2 сантиметри", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как убедиться, что пострадавший не дышит перед началом СЛР?",
+      "questionUk": "Як переконатися, що постраждалий не дихає перед початком СЛР?",
+      "explanationRu": "Нужно запрокинуть голову, приподнять подбородок и в течение не более 10 секунд проверить: смотреть на грудную клетку, слушать и ощущать дыхание.",
+      "explanationUk": "Потрібно закинути голову, підняти підборіддя і протягом не більше 10 секунд перевірити: дивитися на грудну клітку, слухати та відчувати дихання.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-cpr-025",
+      "imageBrief": "Rescuer checking breathing by tilting head and lifting chin",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Запрокинуть голову, поднять подбородок, проверить дыхание до 10 сек", "textUk": "Закинути голову, підняти підборіддя, перевірити дихання до 10 сек", "isCorrect": true, "order": 1},
+        {"textRu": "Приложить зеркало к носу пострадавшего", "textUk": "Прикласти дзеркало до носа постраждалого", "isCorrect": false, "order": 2},
+        {"textRu": "Проверить пульс на запястье в течение 1 минуты", "textUk": "Перевірити пульс на зап'ясті протягом 1 хвилини", "isCorrect": false, "order": 3},
+        {"textRu": "Окликнуть пострадавшего три раза", "textUk": "Гукнути постраждалого три рази", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "В какое положение нужно уложить пострадавшего, который без сознания, но дышит?",
+      "questionUk": "У яке положення потрібно укласти постраждалого, який без свідомості, але дихає?",
+      "explanationRu": "Пострадавшего, который без сознания, но дышит, нужно уложить в восстановительное (боковое устойчивое) положение, чтобы предотвратить аспирацию рвотных масс.",
+      "explanationUk": "Постраждалого, який без свідомості, але дихає, потрібно укласти у відновлювальне (бокове стійке) положення, щоб запобігти аспірації блювотних мас.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-recov-026",
+      "imageBrief": "Recovery position — unconscious person placed on their side",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "В восстановительное (боковое устойчивое) положение", "textUk": "У відновлювальне (бокове стійке) положення", "isCorrect": true, "order": 1},
+        {"textRu": "На спину с запрокинутой головой", "textUk": "На спину із закинутою головою", "isCorrect": false, "order": 2},
+        {"textRu": "В сидячее положение", "textUk": "У сидяче положення", "isCorrect": false, "order": 3},
+        {"textRu": "На живот лицом вниз", "textUk": "На живіт обличчям донизу", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Зачем укладывают пострадавшего в восстановительное положение?",
+      "questionUk": "Навіщо укладають постраждалого у відновлювальне положення?",
+      "explanationRu": "Восстановительное положение предотвращает захлёбывание рвотными массами или западание языка, которые могут перекрыть дыхательные пути.",
+      "explanationUk": "Відновлювальне положення запобігає захлинанню блювотними масами або западанню язика, які можуть перекрити дихальні шляхи.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-recov-027",
+      "imageBrief": "Recovery position prevents airway blockage from vomit or tongue",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Чтобы предотвратить аспирацию рвоты и западание языка", "textUk": "Щоб запобігти аспірації блювоти та западанню язика", "isCorrect": true, "order": 1},
+        {"textRu": "Чтобы улучшить кровообращение в конечностях", "textUk": "Щоб покращити кровообіг у кінцівках", "isCorrect": false, "order": 2},
+        {"textRu": "Чтобы уменьшить болевые ощущения", "textUk": "Щоб зменшити больові відчуття", "isCorrect": false, "order": 3},
+        {"textRu": "Чтобы снизить температуру тела", "textUk": "Щоб знизити температуру тіла", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как правильно уложить пострадавшего в восстановительное положение?",
+      "questionUk": "Як правильно укласти постраждалого у відновлювальне положення?",
+      "explanationRu": "Пострадавшего нужно повернуть на бок, подтянув верхнее колено вперёд, голову слегка запрокинуть назад для открытия дыхательных путей.",
+      "explanationUk": "Постраждалого потрібно повернути на бік, підтягнувши верхнє коліно вперед, голову злегка закинути назад для відкриття дихальних шляхів.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-recov-028",
+      "imageBrief": "Step-by-step recovery position placement with knee forward and head tilted",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Повернуть на бок, верхнее колено вперёд, голову слегка назад", "textUk": "Повернути на бік, верхнє коліно вперед, голову злегка назад", "isCorrect": true, "order": 1},
+        {"textRu": "Положить на спину, подложить подушку под голову", "textUk": "Покласти на спину, підкласти подушку під голову", "isCorrect": false, "order": 2},
+        {"textRu": "Повернуть на бок, голову опустить вниз", "textUk": "Повернути на бік, голову опустити вниз", "isCorrect": false, "order": 3},
+        {"textRu": "Положить лицом вниз, руки вдоль тела", "textUk": "Покласти обличчям донизу, руки вздовж тіла", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Нужно ли проверять дыхание пострадавшего после укладки в восстановительное положение?",
+      "questionUk": "Чи потрібно перевіряти дихання постраждалого після укладки у відновлювальне положення?",
+      "explanationRu": "Да, необходимо регулярно проверять дыхание пострадавшего и быть готовым при его прекращении немедленно начать СЛР.",
+      "explanationUk": "Так, необхідно регулярно перевіряти дихання постраждалого та бути готовим при його припиненні негайно розпочати СЛР.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-recov-029",
+      "imageBrief": "Rescuer monitoring breathing of person in recovery position",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Да, регулярно проверять и при необходимости начать СЛР", "textUk": "Так, регулярно перевіряти та за необхідності розпочати СЛР", "isCorrect": true, "order": 1},
+        {"textRu": "Нет, восстановительное положение полностью безопасно", "textUk": "Ні, відновлювальне положення повністю безпечне", "isCorrect": false, "order": 2},
+        {"textRu": "Только один раз сразу после укладки", "textUk": "Тільки один раз одразу після укладки", "isCorrect": false, "order": 3},
+        {"textRu": "Только после прибытия скорой помощи", "textUk": "Тільки після прибуття швидкої допомоги", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Когда не следует укладывать пострадавшего в восстановительное положение?",
+      "questionUk": "Коли не слід укладати постраждалого у відновлювальне положення?",
+      "explanationRu": "Восстановительное положение нельзя применять при подозрении на травму позвоночника — перемещение может усугубить повреждение.",
+      "explanationUk": "Відновлювальне положення не можна застосовувати при підозрі на травму хребта — переміщення може погіршити пошкодження.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-recov-030",
+      "imageBrief": "Warning against moving victim with suspected spine injury",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "При подозрении на травму позвоночника", "textUk": "При підозрі на травму хребта", "isCorrect": true, "order": 1},
+        {"textRu": "При потере сознания", "textUk": "При втраті свідомості", "isCorrect": false, "order": 2},
+        {"textRu": "При кровотечении из носа", "textUk": "При кровотечі з носа", "isCorrect": false, "order": 3},
+        {"textRu": "При судорогах", "textUk": "При судомах", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как оказать первую помощь при термическом ожоге?",
+      "questionUk": "Як надати першу допомогу при термічному опіку?",
+      "explanationRu": "При термическом ожоге нужно немедленно охладить место ожога прохладной водой в течение 10–15 минут. Нельзя использовать лёд, масло или мазь.",
+      "explanationUk": "При термічному опіку потрібно негайно охолодити місце опіку прохолодною водою протягом 10–15 хвилин. Не можна використовувати лід, масло або мазь.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-burn-031",
+      "imageBrief": "Burn cooled under cool running water for 10-15 minutes",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Охладить прохладной водой 10–15 минут", "textUk": "Охолодити прохолодною водою 10–15 хвилин", "isCorrect": true, "order": 1},
+        {"textRu": "Намазать маслом или жирным кремом", "textUk": "Намазати маслом або жирним кремом", "isCorrect": false, "order": 2},
+        {"textRu": "Приложить лёд к месту ожога", "textUk": "Прикласти лід до місця опіку", "isCorrect": false, "order": 3},
+        {"textRu": "Вскрыть образовавшиеся пузыри", "textUk": "Розкрити пузирі, що утворилися", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что нельзя делать при ожоге, если одежда прилипла к коже?",
+      "questionUk": "Що не можна робити при опіку, якщо одяг прилип до шкіри?",
+      "explanationRu": "Категорически нельзя отрывать прилипшую к ожогу одежду — это приведёт к дополнительной травме кожи. Одежду нужно разрезать вокруг и оставить прилипшие части.",
+      "explanationUk": "Категорично не можна відривати одяг, що прилип до опіку — це призведе до додаткової травми шкіри. Одяг потрібно розрізати навколо та залишити частини, що прилипли.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-burn-032",
+      "imageBrief": "Do not tear clothing stuck to burn — cut around it instead",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Отрывать прилипшую одежду от кожи", "textUk": "Відривати одяг, що прилип, від шкіри", "isCorrect": true, "order": 1},
+        {"textRu": "Охлаждать место ожога водой", "textUk": "Охолоджувати місце опіку водою", "isCorrect": false, "order": 2},
+        {"textRu": "Разрезать одежду вокруг прилипшего участка", "textUk": "Розрізати одяг навколо прилиплої ділянки", "isCorrect": false, "order": 3},
+        {"textRu": "Вызвать скорую помощь", "textUk": "Викликати швидку допомогу", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что нельзя использовать для охлаждения ожога?",
+      "questionUk": "Що не можна використовувати для охолодження опіку?",
+      "explanationRu": "Для охлаждения ожога нельзя использовать лёд и ледяную воду — они вызывают спазм сосудов и могут привести к обморожению обожжённой ткани.",
+      "explanationUk": "Для охолодження опіку не можна використовувати лід та крижану воду — вони викликають спазм судин і можуть призвести до обмороження обпаленої тканини.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-burn-033",
+      "imageBrief": "Ice crossed out — do not apply ice to burn wounds",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Лёд и ледяную воду", "textUk": "Лід та крижану воду", "isCorrect": true, "order": 1},
+        {"textRu": "Прохладную проточную воду", "textUk": "Прохолодну проточну воду", "isCorrect": false, "order": 2},
+        {"textRu": "Стерильную повязку", "textUk": "Стерильну пов'язку", "isCorrect": false, "order": 3},
+        {"textRu": "Специальный гель от ожогов", "textUk": "Спеціальний гель від опіків", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как защитить ожоговую поверхность после охлаждения?",
+      "questionUk": "Як захистити опікову поверхню після охолодження?",
+      "explanationRu": "После охлаждения ожог следует накрыть чистой (стерильной) влажной повязкой. Нельзя применять масла, мази и крема.",
+      "explanationUk": "Після охолодження опік слід накрити чистою (стерильною) вологою пов'язкою. Не можна застосовувати олії, мазі та креми.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-burn-034",
+      "imageBrief": "Sterile moist dressing applied over cooled burn area",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Накрыть стерильной влажной повязкой", "textUk": "Накрити стерильною вологою пов'язкою", "isCorrect": true, "order": 1},
+        {"textRu": "Смазать зубной пастой или кефиром", "textUk": "Змастити зубною пастою або кефіром", "isCorrect": false, "order": 2},
+        {"textRu": "Намазать сливочным или растительным маслом", "textUk": "Намазати вершковим або рослинним маслом", "isCorrect": false, "order": 3},
+        {"textRu": "Оставить открытым для доступа воздуха", "textUk": "Залишити відкритим для доступу повітря", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как долго нужно охлаждать ожог прохладной водой?",
+      "questionUk": "Як довго потрібно охолоджувати опік прохолодною водою?",
+      "explanationRu": "Ожог нужно охлаждать прохладной проточной водой не менее 10–15 минут — это снижает боль и уменьшает глубину повреждения тканей.",
+      "explanationUk": "Опік потрібно охолоджувати прохолодною проточною водою не менше 10–15 хвилин — це знижує біль та зменшує глибину пошкодження тканин.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-burn-035",
+      "imageBrief": "Timer showing 10-15 minutes for burn cooling under running water",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "10–15 минут", "textUk": "10–15 хвилин", "isCorrect": true, "order": 1},
+        {"textRu": "1–2 минуты", "textUk": "1–2 хвилини", "isCorrect": false, "order": 2},
+        {"textRu": "30–40 минут", "textUk": "30–40 хвилин", "isCorrect": false, "order": 3},
+        {"textRu": "5 минут", "textUk": "5 хвилин", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Какой признак НЕ является симптомом шока?",
+      "questionUk": "Який ознак НЕ є симптомом шоку?",
+      "explanationRu": "Покраснение кожи не является признаком шока. При шоке наблюдаются: бледность, холодный липкий пот, учащённый слабый пульс, жажда, слабость.",
+      "explanationUk": "Почервоніння шкіри не є ознакою шоку. При шоку спостерігаються: блідість, холодний липкий піт, прискорений слабкий пульс, спрага, слабість.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-shock-036",
+      "imageBrief": "Shock symptoms chart — pale skin, rapid pulse, thirst",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Покраснение кожи", "textUk": "Почервоніння шкіри", "isCorrect": true, "order": 1},
+        {"textRu": "Бледность и холодный пот", "textUk": "Блідість та холодний піт", "isCorrect": false, "order": 2},
+        {"textRu": "Учащённый слабый пульс", "textUk": "Прискорений слабкий пульс", "isCorrect": false, "order": 3},
+        {"textRu": "Жажда и слабость", "textUk": "Спрага та слабкість", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как уложить пострадавшего при признаках шока?",
+      "questionUk": "Як укласти постраждалого при ознаках шоку?",
+      "explanationRu": "При шоке пострадавшего укладывают на спину и приподнимают ноги на 20–30 см — это улучшает приток крови к жизненно важным органам.",
+      "explanationUk": "При шоку постраждалого укладають на спину та піднімають ноги на 20–30 см — це покращує приплив крові до життєво важливих органів.",
+      "pddRef": "med",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-shock-037",
+      "imageBrief": "Shock victim laying on back with legs elevated 20-30 cm",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "На спину с приподнятыми ногами на 20–30 см", "textUk": "На спину з піднятими ногами на 20–30 см", "isCorrect": true, "order": 1},
+        {"textRu": "В сидячее положение", "textUk": "У сидяче положення", "isCorrect": false, "order": 2},
+        {"textRu": "На бок без дополнительных действий", "textUk": "На бік без додаткових дій", "isCorrect": false, "order": 3},
+        {"textRu": "На живот с опущенной головой", "textUk": "На живіт з опущеною головою", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что нужно сделать при признаках шока в ожидании скорой?",
+      "questionUk": "Що потрібно зробити при ознаках шоку в очікуванні швидкої?",
+      "explanationRu": "При шоке нужно уложить пострадавшего, приподнять ноги, укрыть от переохлаждения, не давать есть и пить, постоянно разговаривать с ним.",
+      "explanationUk": "При шоку потрібно укласти постраждалого, підняти ноги, вкрити від переохолодження, не давати їсти і пити, постійно розмовляти з ним.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-shock-038",
+      "imageBrief": "Rescuer keeping shock victim warm and talking to them",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Уложить, приподнять ноги, укрыть, не давать пить, разговаривать", "textUk": "Укласти, підняти ноги, вкрити, не давати пити, розмовляти", "isCorrect": true, "order": 1},
+        {"textRu": "Дать выпить тёплый чай и накрыть одеялом", "textUk": "Дати випити теплий чай і накрити ковдрою", "isCorrect": false, "order": 2},
+        {"textRu": "Оставить пострадавшего в покое и ждать скорую", "textUk": "Залишити постраждалого в спокої і чекати швидку", "isCorrect": false, "order": 3},
+        {"textRu": "Приподнять верхнюю часть тела и голову", "textUk": "Підняти верхню частину тіла та голову", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Почему нельзя давать пить пострадавшему в состоянии шока?",
+      "questionUk": "Чому не можна давати пити постраждалому у стані шоку?",
+      "explanationRu": "Пострадавшему в состоянии шока нельзя давать жидкость, так как это может вызвать рвоту с риском аспирации, а также может потребоваться срочная операция.",
+      "explanationUk": "Постраждалому у стані шоку не можна давати рідину, оскільки це може спричинити блювоту з ризиком аспірації, а також може знадобитися термінова операція.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-shock-039",
+      "imageBrief": "No drinking sign for shock victim due to aspiration risk",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Риск рвоты и аспирации, возможна срочная операция", "textUk": "Ризик блювоти та аспірації, можлива термінова операція", "isCorrect": true, "order": 1},
+        {"textRu": "Жидкость снижает давление слишком сильно", "textUk": "Рідина знижує тиск занадто сильно", "isCorrect": false, "order": 2},
+        {"textRu": "Жидкость вызывает аллергию при шоке", "textUk": "Рідина викликає алергію при шоку", "isCorrect": false, "order": 3},
+        {"textRu": "Организм не усваивает жидкость при шоке", "textUk": "Організм не засвоює рідину при шоку", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "В каких случаях можно перемещать пострадавшего с подозрением на травму позвоночника?",
+      "questionUk": "У яких випадках можна переміщати постраждалого з підозрою на травму хребта?",
+      "explanationRu": "Пострадавшего с подозрением на травму позвоночника можно перемещать только при непосредственной угрозе жизни: пожар, взрыв, утопление.",
+      "explanationUk": "Постраждалого з підозрою на травму хребта можна переміщати лише при безпосередній загрозі життю: пожежа, вибух, утоплення.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-spine-041",
+      "imageBrief": "Fire and explosion danger — exception to no-move rule for spine injury",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Только при угрозе жизни (пожар, взрыв, утопление)", "textUk": "Лише при загрозі життю (пожежа, вибух, утоплення)", "isCorrect": true, "order": 1},
+        {"textRu": "Если пострадавший сам просит его переместить", "textUk": "Якщо постраждалий сам просить його перемістити", "isCorrect": false, "order": 2},
+        {"textRu": "При любом дискомфорте пострадавшего", "textUk": "При будь-якому дискомфорті постраждалого", "isCorrect": false, "order": 3},
+        {"textRu": "Для транспортировки в больницу своим транспортом", "textUk": "Для транспортування в лікарню власним транспортом", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как определить возможную травму позвоночника у пострадавшего?",
+      "questionUk": "Як визначити можливу травму хребта у постраждалого?",
+      "explanationRu": "На травму позвоночника указывают: боль в шее или спине, онемение или слабость в конечностях, потеря чувствительности, механизм травмы (падение, ДТП).",
+      "explanationUk": "На травму хребта вказують: біль у шиї або спині, оніміння або слабість у кінцівках, втрата чутливості, механізм травми (падіння, ДТП).",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-spine-042",
+      "imageBrief": "Spine injury indicators — neck pain, limb numbness after accident",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Боль в шее/спине, онемение конечностей, механизм травмы", "textUk": "Біль у шиї/спині, оніміння кінцівок, механізм травми", "isCorrect": true, "order": 1},
+        {"textRu": "Только сильная боль в месте удара", "textUk": "Тільки сильний біль у місці удару", "isCorrect": false, "order": 2},
+        {"textRu": "Высокая температура тела", "textUk": "Висока температура тіла", "isCorrect": false, "order": 3},
+        {"textRu": "Отёк мягких тканей вокруг позвоночника", "textUk": "Набряк м'яких тканин навколо хребта", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Как правильно эвакуировать пострадавшего с подозрением на травму позвоночника при угрозе пожара?",
+      "questionUk": "Як правильно евакуювати постраждалого з підозрою на травму хребта при загрозі пожежі?",
+      "explanationRu": "При вынужденной эвакуации нужно поддерживать голову и шею в одной плоскости с телом, перемещать пострадавшего как единое целое, минимально двигая позвоночник.",
+      "explanationUk": "При вимушеній евакуації потрібно підтримувати голову та шию в одній площині з тілом, переміщати постраждалого як єдине ціле, мінімально рухаючи хребет.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-spine-043",
+      "imageBrief": "Emergency spine evacuation — head and spine aligned during move",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Держать голову и шею в одной плоскости с телом, перемещать как единое целое", "textUk": "Тримати голову та шию в одній площині з тілом, переміщати як єдине ціле", "isCorrect": true, "order": 1},
+        {"textRu": "Тащить за ноги, избегая касания головы", "textUk": "Тягнути за ноги, уникаючи дотику голови", "isCorrect": false, "order": 2},
+        {"textRu": "Нести на руках с согнутым телом", "textUk": "Нести на руках зі зігнутим тілом", "isCorrect": false, "order": 3},
+        {"textRu": "Перемещение невозможно ни при каких обстоятельствах", "textUk": "Переміщення неможливе ні за яких обставин", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Нужно ли снимать шлем с мотоциклиста при подозрении на травму шеи?",
+      "questionUk": "Чи потрібно знімати шолом з мотоцикліста при підозрі на травму шиї?",
+      "explanationRu": "Шлем с мотоциклиста без сознания лучше не снимать, если только это не мешает проведению реанимации — снятие шлема может усугубить травму шеи.",
+      "explanationUk": "Шолом з мотоцикліста без свідомості краще не знімати, якщо тільки це не заважає проведенню реанімації — знімання шолома може погіршити травму шиї.",
+      "pddRef": "med",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-spine-044",
+      "imageBrief": "Motorcycle helmet removal warning for neck injury",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Нет, если это не мешает реанимации — снятие может ухудшить травму", "textUk": "Ні, якщо це не заважає реанімації — знімання може погіршити травму", "isCorrect": true, "order": 1},
+        {"textRu": "Да, шлем нужно снять немедленно", "textUk": "Так, шолом потрібно зняти негайно", "isCorrect": false, "order": 2},
+        {"textRu": "Да, шлем мешает нормальному дыханию", "textUk": "Так, шолом заважає нормальному диханню", "isCorrect": false, "order": 3},
+        {"textRu": "Снять только если пострадавший в сознании", "textUk": "Зняти тільки якщо постраждалий при свідомості", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что делать при подозрении на травму позвоночника до приезда скорой помощи?",
+      "questionUk": "Що робити при підозрі на травму хребта до приїзду швидкої допомоги?",
+      "explanationRu": "При подозрении на травму позвоночника нужно обездвижить голову и шею, успокоить пострадавшего, не давать ему двигаться и ждать скорую помощь.",
+      "explanationUk": "При підозрі на травму хребта потрібно знерухомити голову та шию, заспокоїти постраждалого, не давати йому рухатися та чекати швидку допомогу.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-spine-045",
+      "imageBrief": "Rescuer stabilizing head and neck of spine injury victim",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Обездвижить голову и шею, успокоить, не давать двигаться", "textUk": "Знерухомити голову та шию, заспокоїти, не давати рухатися", "isCorrect": true, "order": 1},
+        {"textRu": "Усадить пострадавшего и дать воды", "textUk": "Посадити постраждалого та дати води", "isCorrect": false, "order": 2},
+        {"textRu": "Перевести пострадавшего в тёплое место", "textUk": "Перевести постраждалого у тепле місце", "isCorrect": false, "order": 3},
+        {"textRu": "Сделать массаж спины для уменьшения боли", "textUk": "Зробити масаж спини для зменшення болю", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "С какого расстояния нужно начинать тушить пожар автомобиля огнетушителем?",
+      "questionUk": "З якої відстані потрібно починати гасити пожежу автомобіля вогнегасником?",
+      "explanationRu": "Тушение начинают с расстояния 3–4 метра от источника огня, приближаясь по мере подавления пламени. Огнетушитель направляют к основанию огня.",
+      "explanationUk": "Гасіння починають з відстані 3–4 метри від джерела вогню, наближаючись у міру придушення полум'я. Вогнегасник спрямовують до основи вогню.",
+      "pddRef": "2.9",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-fire-046",
+      "imageBrief": "Fire extinguisher used from 3-4 meters distance aimed at base of fire",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "С расстояния 3–4 метра, направляя к основанию огня", "textUk": "З відстані 3–4 метри, спрямовуючи до основи вогню", "isCorrect": true, "order": 1},
+        {"textRu": "С расстояния 10 метров, направляя на пламя сверху", "textUk": "З відстані 10 метрів, спрямовуючи на полум'я зверху", "isCorrect": false, "order": 2},
+        {"textRu": "С расстояния 1 метра, направляя в центр огня", "textUk": "З відстані 1 метру, спрямовуючи в центр вогню", "isCorrect": false, "order": 3},
+        {"textRu": "С расстояния 20 метров через окно автомобиля", "textUk": "З відстані 20 метрів через вікно автомобіля", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Какой вид огнетушителя нельзя применять при горении электрооборудования?",
+      "questionUk": "Який вид вогнегасника не можна застосовувати при горінні електрообладнання?",
+      "explanationRu": "При горении электрооборудования нельзя применять водные и пенные огнетушители — вода и пена проводят электрический ток, что создаёт риск поражения электрическим током.",
+      "explanationUk": "При горінні електрообладнання не можна застосовувати водні та пінні вогнегасники — вода та піна проводять електричний струм, що створює ризик ураження електричним струмом.",
+      "pddRef": "2.9",
+      "difficulty": "HARD",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-fire-047",
+      "imageBrief": "Water foam extinguisher crossed out for electrical fire",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Водные и пенные (проводят электрический ток)", "textUk": "Водні та пінні (проводять електричний струм)", "isCorrect": true, "order": 1},
+        {"textRu": "Порошковые огнетушители", "textUk": "Порошкові вогнегасники", "isCorrect": false, "order": 2},
+        {"textRu": "Углекислотные огнетушители", "textUk": "Вуглекислотні вогнегасники", "isCorrect": false, "order": 3},
+        {"textRu": "Хладоновые огнетушители", "textUk": "Хладонові вогнегасники", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Где в автомобиле должен находиться огнетушитель?",
+      "questionUk": "Де в автомобілі повинен знаходитися вогнегасник?",
+      "explanationRu": "Огнетушитель должен находиться в доступном месте в салоне автомобиля (обычно под водительским сиденьем или в специальном держателе) и быть надёжно закреплён.",
+      "explanationUk": "Вогнегасник повинен знаходитися у доступному місці в салоні автомобіля (зазвичай під водійським сидінням або у спеціальному тримачі) та бути надійно закріплений.",
+      "pddRef": "2.9",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-fire-048",
+      "imageBrief": "Fire extinguisher stored under driver seat in car interior",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "В доступном месте в салоне, надёжно закреплённым", "textUk": "У доступному місці в салоні, надійно закріпленим", "isCorrect": true, "order": 1},
+        {"textRu": "В багажнике под всеми вещами", "textUk": "У багажнику під усіма речами", "isCorrect": false, "order": 2},
+        {"textRu": "Под капотом рядом с двигателем", "textUk": "Під капотом поряд з двигуном", "isCorrect": false, "order": 3},
+        {"textRu": "На крыше автомобиля", "textUk": "На даху автомобіля", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Что нужно сделать перед применением огнетушителя при пожаре в автомобиле?",
+      "questionUk": "Що потрібно зробити перед застосуванням вогнегасника при пожежі в автомобілі?",
+      "explanationRu": "Перед применением огнетушителя нужно: убедиться в безопасности, сорвать пломбу и вытащить чеку, направить насадку на основание огня и нажать рычаг.",
+      "explanationUk": "Перед застосуванням вогнегасника потрібно: переконатися у безпеці, зірвати пломбу і витягти чеку, спрямувати насадку на основу вогню і натиснути важіль.",
+      "pddRef": "2.9",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-fire-049",
+      "imageBrief": "Fire extinguisher pin removal and activation steps illustrated",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Сорвать пломбу, вытащить чеку, направить на основание огня, нажать рычаг", "textUk": "Зірвати пломбу, витягти чеку, спрямувати на основу вогню, натиснути важіль", "isCorrect": true, "order": 1},
+        {"textRu": "Встряхнуть огнетушитель и открыть вентиль", "textUk": "Струснути вогнегасник та відкрити вентиль", "isCorrect": false, "order": 2},
+        {"textRu": "Перевернуть огнетушитель вверх дном и нажать кнопку", "textUk": "Перевернути вогнегасник догори дном і натиснути кнопку", "isCorrect": false, "order": 3},
+        {"textRu": "Снять крышку и вылить содержимое на огонь", "textUk": "Зняти кришку та вилити вміст на вогонь", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Какое расстояние для знака аварийной остановки правильное при ДТП на автостраде?",
+      "questionUk": "Яка відстань для знаку аварійної зупинки правильна при ДТП на автостраді?",
+      "explanationRu": "На автостраде (за пределами населённого пункта) знак аварийной остановки выставляется не менее чем в 40 метрах от автомобиля — с учётом высокой скорости движения.",
+      "explanationUk": "На автостраді (за межами населеного пункту) знак аварійної зупинки виставляється не менш ніж у 40 метрах від автомобіля — з урахуванням високої швидкості руху.",
+      "pddRef": "2.9",
+      "difficulty": "EASY",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-fire-050",
+      "imageBrief": "Warning triangle 40 meters behind stopped car on highway",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Не менее 40 метров", "textUk": "Не менше 40 метрів", "isCorrect": true, "order": 1},
+        {"textRu": "Не менее 20 метров", "textUk": "Не менше 20 метрів", "isCorrect": false, "order": 2},
+        {"textRu": "Не менее 100 метров", "textUk": "Не менше 100 метрів", "isCorrect": false, "order": 3},
+        {"textRu": "Не менее 10 метров", "textUk": "Не менше 10 метрів", "isCorrect": false, "order": 4}
+      ]
+    },
+    {
+      "questionRu": "Признаки шока: бледная кожа, частый слабый пульс, жажда. Что нужно сделать немедленно?",
+      "questionUk": "Ознаки шоку: бліда шкіра, частий слабкий пульс, спрага. Що потрібно зробити негайно?",
+      "explanationRu": "При признаках шока нужно немедленно уложить пострадавшего на спину и приподнять ноги — это улучшит кровоснабжение жизненно важных органов.",
+      "explanationUk": "При ознаках шоку потрібно негайно укласти постраждалого на спину та підняти ноги — це покращить кровопостачання життєво важливих органів.",
+      "pddRef": "med",
+      "difficulty": "MEDIUM",
+      "tags": ["first_aid", "safety"],
+      "scenarioHash": "b19-firstaid-shock-040",
+      "imageBrief": "Shock victim positioned on back with legs raised high",
+      "imageSearchQueries": ["UA road sign 1.39 svg"],
+      "options": [
+        {"textRu": "Уложить на спину и приподнять ноги", "textUk": "Укласти на спину та підняти ноги", "isCorrect": true, "order": 1},
+        {"textRu": "Дать выпить воды и успокоить", "textUk": "Дати випити води та заспокоїти", "isCorrect": false, "order": 2},
+        {"textRu": "Усадить прямо и обеспечить свежий воздух", "textUk": "Посадити прямо та забезпечити свіже повітря", "isCorrect": false, "order": 3},
+        {"textRu": "Положить грелку на живот", "textUk": "Покласти грілку на живіт", "isCorrect": false, "order": 4}
+      ]
+    }
+  ]
+}

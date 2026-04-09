@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useCallback } from "react";
 
-const EXAM_DURATION = 20 * 60; // 20 minutes in seconds
+const EXAM_DURATION = 20 * 60;
 
 export function QuizTimer({ onTimeout }: { onTimeout: () => void }) {
   const [remaining, setRemaining] = useState(EXAM_DURATION);
-
   const handleTimeout = useCallback(onTimeout, [onTimeout]);
 
   useEffect(() => {
@@ -20,7 +19,6 @@ export function QuizTimer({ onTimeout }: { onTimeout: () => void }) {
         return prev - 1;
       });
     }, 1000);
-
     return () => clearInterval(interval);
   }, [handleTimeout]);
 
@@ -29,10 +27,14 @@ export function QuizTimer({ onTimeout }: { onTimeout: () => void }) {
   const isUrgent = remaining < 120;
 
   return (
-    <span
-      className={`font-mono text-lg font-bold ${isUrgent ? "text-red-600" : "text-gray-700"}`}
+    <div
+      className={`rounded-xl px-3 py-1.5 font-mono text-sm font-bold tabular-nums ${
+        isUrgent
+          ? "bg-red-500/10 text-red-500 animate-pulse"
+          : "bg-[var(--bg-secondary)] text-[var(--text-secondary)]"
+      }`}
     >
       {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
-    </span>
+    </div>
   );
 }

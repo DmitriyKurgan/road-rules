@@ -41,11 +41,15 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="flex min-h-screen flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+      <body className="flex min-h-screen flex-col">
+        {/* Ambient tropical glow */}
+        <div className="glow-ambient bg-teal-400 left-[-200px] top-[-100px]" />
+        <div className="glow-ambient bg-emerald-500 right-[-200px] bottom-[30%]" />
+        <div className="glow-ambient bg-cyan-400 left-[40%] bottom-[-200px]" />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             <Header />
-            <main className="flex-1">{children}</main>
+            <main className="relative z-10 flex-1">{children}</main>
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>

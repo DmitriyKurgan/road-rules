@@ -90,7 +90,11 @@
       "Bash(psql -h localhost -p 5432 -U postgres -d road_rules -c ':*)",
       "Bash(PGPASSWORD=1234 psql -h localhost -p 5432 -U postgres -d road_rules -c \"SELECT \\\\\"pddRef\\\\\", difficulty, status, substring\\(\\\\\"questionRu\\\\\" from 1 for 50\\) as q FROM tickets ORDER BY \\\\\"pddRef\\\\\";\")",
       "Bash(psql -h localhost -p 5432 -U postgres -d road_rules -t -A -c ':*)",
-      "Bash(rm -f d:/Work/AI/road-rules/apps/api/uploads/images/*.svg d:/Work/AI/road-rules/apps/api/uploads/images/*.bin d:/Work/AI/road-rules/apps/api/uploads/images/*.jpg d:/Work/AI/road-rules/apps/api/uploads/images/*.png)"
+      "Bash(rm -f d:/Work/AI/road-rules/apps/api/uploads/images/*.svg d:/Work/AI/road-rules/apps/api/uploads/images/*.bin d:/Work/AI/road-rules/apps/api/uploads/images/*.jpg d:/Work/AI/road-rules/apps/api/uploads/images/*.png)",
+      "Bash(node -e \" let d='';process.stdin.on\\('data',c=>d+=c\\);process.stdin.on\\('end',\\(\\)=>{ JSON.parse\\(d\\).forEach\\(c=>console.log\\(c.title\\)\\); }\\) \" sleep 1 done)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"User-Agent: RoadRulesTrainer/1.0\" \"https://upload.wikimedia.org/wikipedia/commons/e/ec/UA_road_sign_1.16.svg\")",
+      "Bash(node --input-type=module)",
+      "Bash(PGPASSWORD=1234 psql -h localhost -p 5432 -U postgres -d road_rules)"
     ],
     "additionalDirectories": [
       "d:\\Work\\AI\\road-rules\\apps\\web\\src\\app\\admin\\tickets"

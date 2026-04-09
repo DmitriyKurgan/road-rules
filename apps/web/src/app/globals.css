@@ -1,3 +1,174 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-primary: #e8f4f0;
+  --bg-secondary: #d4ece5;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-card-hover: rgba(255, 255, 255, 0.9);
+  --border-subtle: rgba(0, 80, 60, 0.08);
+  --border-hover: rgba(20, 184, 166, 0.35);
+  --text-primary: #0f2e2a;
+  --text-secondary: #3d6b63;
+  --text-muted: #7da69e;
+  --glow-blue: rgba(20, 184, 166, 0.12);
+  --glow-green: rgba(34, 197, 94, 0.15);
+  --glow-red: rgba(239, 68, 68, 0.15);
+}
+
+.dark {
+  --bg-primary: #0a1a1e;
+  --bg-secondary: #0f2a30;
+  --bg-card: rgba(10, 30, 35, 0.65);
+  --bg-card-hover: rgba(10, 30, 35, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(45, 212, 191, 0.35);
+  --text-primary: #e2f1ee;
+  --text-secondary: #8cc5b9;
+  --text-muted: #5a9488;
+  --glow-blue: rgba(20, 184, 166, 0.18);
+  --glow-green: rgba(34, 197, 94, 0.2);
+  --glow-red: rgba(239, 68, 68, 0.2);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Tropical light background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(251, 191, 36, 0.06) 0%, transparent 50%),
+    linear-gradient(175deg, #e8f4f0 0%, #d4ece5 40%, #c7e5d8 70%, #dff0e8 100%);
+}
+
+/* Tropical dark background */
+.dark body::before {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 85%, rgba(20, 184, 166, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(251, 191, 36, 0.04) 0%, transparent 50%),
+    linear-gradient(175deg, #0a1a1e 0%, #0f2a30 35%, #0d2226 65%, #0a1a1e 100%);
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .glass-card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+/* Ambient glow blobs */
+.glow-ambient {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientFloat 20s ease-in-out infinite;
+}
+
+.dark .glow-ambient {
+  opacity: 0.1;
+}
+
+@keyframes ambientFloat {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(30px, -20px); }
+  66% { transform: translate(-20px, 15px); }
+}
+
+/* Gradient progress bar */
+.progress-gradient {
+  background: linear-gradient(90deg, #14b8a6, #06b6d4, #3b82f6);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glow head on progress */
+.progress-glow::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2dd4bf;
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.6);
+}
+
+/* Smooth spring easing */
+.spring-transition {
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Keyboard focus ring */
+*:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Button base radius */
+button, a[class*="rounded"] {
+  border-radius: 12px;
+}
+
+/* Prevent ambient blobs from causing scrollbar */
+html {
+  overflow-x: hidden;
+}

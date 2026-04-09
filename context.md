@@ -1,5 +1,21 @@
 # Change Log
 
+## 2026-04-09
+
+### Generated `agents/data/batch-016.json`
+- **What**: 50 bilingual RU+UK PDD exam tickets on Railway Crossings (section 20)
+- **Why**: Fill batch-016 slot in the exam ticket dataset
+- **Mix**: 15 EASY / 20 MEDIUM / 15 HARD; scenarioHash prefix `b16-`
+- **Coverage**: approach rules, barrier down/up, red lights, where to stop, forced stop on tracks, signs 1.27–1.29, multi-track crossings, no-barrier crossings, 50m parking rule, overtaking prohibition 100m, duty officer signals, cyclist dismount rule
+- **pddRef values used**: 20.1, 20.2, 20.3, 20.4, 20.5, 20.6, 20.7, 20.8, 15.9, 18.1
+
+### Generated `agents/data/batch-020.json`
+- **What**: 50 bilingual RU+UK PDD exam tickets — mixed hard exam (hardest batch)
+- **Why**: Fill batch-020 slot; designed as the hardest mixed batch
+- **Mix**: 5 EASY / 15 MEDIUM / 30 HARD; scenarioHash prefix `b20-`
+- **Coverage**: 3-car intersections, main road direction change, tram+car priority, filter arrow+red, rain/fog overtaking, speed sign conflicts, marking+sign conflicts, night driving high/low beam, emergency vehicle rules, obstacle bypass, bus stop priority, pedestrian priority on turns
+- **imageSearchQueries**: topic-specific per ticket (intersections 1.16, speed 3.29-050, overtaking 3.25, traffic lights 5.38, give way 2.1)
+
 ## 2026-04-06
 
 ### Created `CLAUDE.md`

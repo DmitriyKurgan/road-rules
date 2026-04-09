@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { motion, AnimatePresence } from "framer-motion";
 import { useQuizStore } from "@/store/quiz";
 
 interface TicketCardProps {
@@ -34,27 +35,29 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
   const ticketStartTime = useRef(Date.now());
 
   const answered = lastAnswer !== null;
 
   const handleSelect = async (optionId: string) => {
-    if (answered || isSubmitting) return;
+    if (answered || isSubmitting || isLocked) return;
+    setIsLocked(true);
     setSelectedId(optionId);
     setIsSubmitting(true);
-
     const timeMs = Date.now() - ticketStartTime.current;
     try {
       await submitAnswer(ticket.ticketId, optionId, timeMs);
     } catch {
-      // allow retry on error
       setSelectedId(null);
+      setIsLocked(false);
     }
     setIsSubmitting(false);
   };
 
   const handleNext = () => {
     setSelectedId(null);
+    setIsLocked(false);
     ticketStartTime.current = Date.now();
     nextTicket();
   };
@@ -66,111 +69,133 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
 
   const getOptionStyle = (optionId: string) => {
     if (!answered) {
-      return "border-gray-300 hover:border-blue-400 hover:bg-blue-50 cursor-pointer dark:border-gray-600 dark:hover:border-blue-500 dark:hover:bg-gray-700";
+      if (optionId === selectedId && isSubmitting)
+        return "border-teal-400 bg-[var(--glow-blue)] scale-[0.98]";
+      return "border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--glow-blue)] hover:scale-[1.01] cursor-pointer";
     }
-    if (optionId === lastAnswer.correctOptionId) {
-      return "border-green-500 bg-green-50 dark:bg-green-900/30";
-    }
-    if (optionId === selectedId && !lastAnswer.isCorrect) {
-      return "border-red-500 bg-red-50 dark:bg-red-900/30";
-    }
-    return "border-gray-200 opacity-60 dark:border-gray-700";
+    if (optionId === lastAnswer.correctOptionId)
+      return "border-green-500/50 bg-[var(--glow-green)]";
+    if (optionId === selectedId && !lastAnswer.isCorrect)
+      return "border-red-500/50 bg-[var(--glow-red)]";
+    return "border-[var(--border-subtle)] opacity-40";
   };
 
   const questionText = lang === "uk" ? ticket.question.uk : ticket.question.ru;
+  const letters = ["A", "B", "C", "D"];
+  const hasImage = ticket.images && ticket.images.length > 0;
 
   return (
-    <div className="rounded-lg border bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-      {/* Question */}
-      <div className="mb-6">
-        <p className="mb-1 text-xs text-gray-400 dark:text-gray-500">
-          {t("pddReference")}: {ticket.pddRef}
-        </p>
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{questionText}</h2>
+    <motion.div
+      key={ticket.ticketId}
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -30 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="glass-card p-4 sm:p-5"
+    >
+      {/* Header: ref + question */}
+      <div className="mb-1">
+        <span className="rounded-md bg-teal-500/10 px-2 py-0.5 text-[10px] font-medium text-teal-600 dark:text-teal-400">
+          {ticket.pddRef}
+        </span>
       </div>
+      <h2 className="mb-3 text-[15px] font-semibold leading-snug text-[var(--text-primary)] sm:text-base">
+        {questionText}
+      </h2>
 
-      {/* Image */}
-      {ticket.images && ticket.images.length > 0 && (
-        <div className="mb-6 flex justify-center">
-          <div className="text-center">
+      {/* Image — compact */}
+      {hasImage && (
+        <div className="mb-3 flex justify-center">
+          <div className="overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] px-3 py-2">
             <img
-              src={`${process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:3001"}${ticket.images[0].url}`}
-              alt={ticket.images[0].title}
-              className="mx-auto max-h-48 rounded-lg object-contain"
+              src={`${process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:3001"}${ticket.images![0].url}`}
+              alt={ticket.images![0].title}
+              className="mx-auto max-h-24 object-contain sm:max-h-28"
             />
-            <p className="mt-1 text-xs text-gray-400">
-              {ticket.images[0].title}
-            </p>
           </div>
         </div>
       )}
 
-      {/* Options */}
-      <div className="mb-6 space-y-3">
-        {ticket.options.map((option) => {
+      {/* Options — compact */}
+      <div className="mb-3 space-y-2">
+        {ticket.options.map((option, idx) => {
           const text = lang === "uk" ? option.textUk : option.textRu;
+          const isCorrect = answered && option.id === lastAnswer.correctOptionId;
+          const isWrong = answered && option.id === selectedId && !lastAnswer.isCorrect;
+
           return (
-            <button
+            <motion.button
               key={option.id}
               onClick={() => handleSelect(option.id)}
               disabled={answered || isSubmitting}
-              className={`flex w-full items-start gap-3 rounded-lg border-2 p-4 text-left transition-colors ${getOptionStyle(option.id)}`}
+              animate={isWrong ? { x: [0, -5, 5, -3, 3, 0] } : {}}
+              transition={isWrong ? { duration: 0.35 } : {}}
+              className={`spring-transition flex w-full items-center gap-3 rounded-xl border-2 px-3 py-2.5 text-left text-sm ${getOptionStyle(option.id)}`}
             >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-gray-300 text-sm font-bold text-gray-500 dark:border-gray-600 dark:text-gray-400">
-                {String.fromCharCode(64 + option.order)}
+              <span
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold spring-transition ${
+                  isCorrect
+                    ? "bg-green-500 text-white"
+                    : isWrong
+                      ? "bg-red-500 text-white"
+                      : "bg-[var(--bg-secondary)] text-[var(--text-muted)]"
+                }`}
+              >
+                {isCorrect ? "✓" : isWrong ? "✕" : letters[idx]}
               </span>
-              <span className="text-gray-800 dark:text-gray-200">{text}</span>
-              {answered && option.id === lastAnswer.correctOptionId && (
-                <span className="ml-auto text-green-600">&#10003;</span>
-              )}
-              {answered &&
-                option.id === selectedId &&
-                !lastAnswer.isCorrect && (
-                  <span className="ml-auto text-red-600">&#10007;</span>
-                )}
-            </button>
+              <span className="text-[var(--text-primary)] leading-snug">{text}</span>
+            </motion.button>
           );
         })}
       </div>
 
-      {/* Answer feedback */}
-      {answered && (
-        <div
-          className={`mb-6 rounded-lg p-4 ${lastAnswer.isCorrect ? "bg-green-50 dark:bg-green-900/20" : "bg-amber-50 dark:bg-amber-900/20"}`}
-        >
-          <p
-            className={`mb-1 font-semibold ${lastAnswer.isCorrect ? "text-green-700 dark:text-green-400" : "text-amber-700 dark:text-amber-400"}`}
+      {/* Answer feedback — inline compact */}
+      <AnimatePresence>
+        {answered && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden"
           >
-            {lastAnswer.isCorrect ? t("correctAnswer") : t("explanation")}
-          </p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
-            {lang === "uk"
-              ? lastAnswer.explanation.uk
-              : lastAnswer.explanation.ru}
-          </p>
-        </div>
-      )}
+            <div
+              className={`mb-3 rounded-xl px-3 py-2.5 text-[13px] leading-relaxed ${
+                lastAnswer.isCorrect
+                  ? "bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400"
+                  : "bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400"
+              }`}
+            >
+              <span className="font-semibold">
+                {lastAnswer.isCorrect ? "✓ " : ""}
+                {lastAnswer.isCorrect ? t("correctAnswer") : t("explanation")}:
+              </span>{" "}
+              <span className="text-[var(--text-secondary)]">
+                {lang === "uk" ? lastAnswer.explanation.uk : lastAnswer.explanation.ru}
+              </span>
+            </div>
 
-      {/* Navigation */}
-      {answered && (
-        <div className="flex justify-end">
-          {isLast ? (
-            <button
-              onClick={handleFinish}
-              className="rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
-            >
-              {tc("finish")}
-            </button>
-          ) : (
-            <button
-              onClick={handleNext}
-              className="rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
-            >
-              {tc("next")}
-            </button>
-          )}
-        </div>
-      )}
-    </div>
+            {/* Action button */}
+            <div className="flex justify-end">
+              {isLast ? (
+                <button
+                  onClick={handleFinish}
+                  className="spring-transition rounded-xl bg-teal-600 px-6 py-2 text-sm font-semibold text-white hover:bg-teal-700"
+                >
+                  {tc("finish")}
+                </button>
+              ) : (
+                <button
+                  onClick={handleNext}
+                  className="spring-transition rounded-xl bg-teal-600 px-6 py-2 text-sm font-semibold text-white hover:bg-teal-700"
+                >
+                  {tc("next")} →
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
