@@ -94,10 +94,16 @@
       "Bash(node -e \" let d='';process.stdin.on\\('data',c=>d+=c\\);process.stdin.on\\('end',\\(\\)=>{ JSON.parse\\(d\\).forEach\\(c=>console.log\\(c.title\\)\\); }\\) \" sleep 1 done)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"User-Agent: RoadRulesTrainer/1.0\" \"https://upload.wikimedia.org/wikipedia/commons/e/ec/UA_road_sign_1.16.svg\")",
       "Bash(node --input-type=module)",
-      "Bash(PGPASSWORD=1234 psql -h localhost -p 5432 -U postgres -d road_rules)"
+      "Bash(PGPASSWORD=1234 psql -h localhost -p 5432 -U postgres -d road_rules)",
+      "Bash(psql -h localhost -p 5432 -U postgres -d road_rules -t -A -F '|||' -c ':*)",
+      "Bash(curl -s -o /dev/null -w '%{http_code} %{size_download}b' http://localhost:3001/uploads/images/01-equal-intersection-2cars.png)",
+      "Bash(curl -s -o /dev/null -w '%{http_code} %{size_download}b' http://localhost:3001/uploads/images/04-main-secondary.png)",
+      "Bash(psql -h localhost -p 5432 -U postgres -d road_rules -t -c ':*)",
+      "Bash(psql -h localhost -p 5432 -U postgres -d road_rules -t -A -F '|' -c ':*)"
     ],
     "additionalDirectories": [
-      "d:\\Work\\AI\\road-rules\\apps\\web\\src\\app\\admin\\tickets"
+      "d:\\Work\\AI\\road-rules\\apps\\web\\src\\app\\admin\\tickets",
+      "d:\\Work\\AI\\road-rules\\agents\\data\\generated-images"
     ]
   }
 }
