@@ -30,3 +30,9 @@ services:
         value: 7d
       - key: CORS_ORIGIN
         value: https://dmitriykurgan.github.io
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_CALLBACK_URL
+        value: https://road-rules-api.onrender.com/api/auth/google/callback

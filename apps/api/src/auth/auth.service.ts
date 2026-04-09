@@ -33,13 +33,36 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const user = await this.prisma.user.findUnique({ where: { email } });
-    if (!user) {
+    if (!user || !user.passwordHash) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
     const valid = await bcrypt.compare(password, user.passwordHash);
     if (!valid) {
       throw new UnauthorizedException('Invalid credentials');
+    }
+
+    return this.generateTokens(user.id, user.email, user.role);
+  }
+
+  async googleLogin(googleId: string, email: string) {
+    let user = await this.prisma.user.findUnique({ where: { googleId } });
+
+    if (!user) {
+      // Check if email already exists (registered with password)
+      user = await this.prisma.user.findUnique({ where: { email } });
+      if (user) {
+        // Link Google account to existing user
+        user = await this.prisma.user.update({
+          where: { id: user.id },
+          data: { googleId },
+        });
+      } else {
+        // Create new user
+        user = await this.prisma.user.create({
+          data: { email, googleId },
+        });
+      }
     }
 
     return this.generateTokens(user.id, user.email, user.role);

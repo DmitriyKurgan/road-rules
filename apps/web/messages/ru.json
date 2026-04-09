@@ -15,7 +15,8 @@
     "start": "Начать",
     "finish": "Завершить",
     "tryAgain": "Попробовать снова",
-    "loading": "Загрузка..."
+    "loading": "Загрузка...",
+    "or": "или"
   },
   "quiz": {
     "question": "Вопрос",
@@ -44,6 +45,7 @@
     "password": "Пароль",
     "loginTitle": "Вход",
     "registerTitle": "Регистрация",
+    "googleLogin": "Войти через Google",
     "noAccount": "Нет аккаунта?",
     "hasAccount": "Уже есть аккаунт?"
   },

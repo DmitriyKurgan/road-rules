@@ -114,7 +114,12 @@
       "Bash(curl -s https://road-rules-api.onrender.com/api/tickets)",
       "Bash(GITHUB_PAGES=true pnpm --filter @road-rules/web run build)",
       "Bash(curl -sv -X POST https://road-rules-api.onrender.com/api/sessions -H \"Content-Type: application/json\" -d '{\"mode\":\"PRACTICE\",\"lang\":\"RU\"}')",
-      "Bash(curl -s -X POST https://road-rules-api.onrender.com/api/sessions -H \"Content-Type: application/json\" -d '{\"mode\":\"PRACTICE\",\"lang\":\"RU\"}')"
+      "Bash(curl -s -X POST https://road-rules-api.onrender.com/api/sessions -H \"Content-Type: application/json\" -d '{\"mode\":\"PRACTICE\",\"lang\":\"RU\"}')",
+      "Bash(pnpm --filter @road-rules/api add passport-google-oauth20)",
+      "Bash(pnpm --filter @road-rules/api add -D @types/passport-google-oauth20)",
+      "Bash(pnpm --filter @road-rules/api exec prisma migrate dev --name add_google_oauth)",
+      "Bash(pnpm --filter @road-rules/api run build)",
+      "Bash(pnpm --filter @road-rules/web run build)"
     ],
     "additionalDirectories": [
       "d:\\Work\\AI\\road-rules\\apps\\web\\src\\app\\admin\\tickets",

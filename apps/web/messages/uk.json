@@ -15,7 +15,8 @@
     "start": "Почати",
     "finish": "Завершити",
     "tryAgain": "Спробувати знову",
-    "loading": "Завантаження..."
+    "loading": "Завантаження...",
+    "or": "або"
   },
   "quiz": {
     "question": "Питання",
@@ -44,6 +45,7 @@
     "password": "Пароль",
     "loginTitle": "Вхід",
     "registerTitle": "Реєстрація",
+    "googleLogin": "Увійти через Google",
     "noAccount": "Немає акаунту?",
     "hasAccount": "Вже є акаунт?"
   },

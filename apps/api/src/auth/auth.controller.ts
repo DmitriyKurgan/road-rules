@@ -5,7 +5,12 @@ import {
   Body,
   HttpCode,
   HttpStatus,
+  UseGuards,
+  Req,
+  Res,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
@@ -15,7 +20,10 @@ import { CurrentUser } from '../common/decorators/current-user.decorator';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private config: ConfigService,
+  ) {}
 
   @Public()
   @Post('register')
@@ -46,5 +54,26 @@ export class AuthController {
   @Get('me')
   getProfile(@CurrentUser('id') userId: string) {
     return this.authService.getProfile(userId);
+  }
+
+  @Public()
+  @Get('google')
+  @UseGuards(AuthGuard('google'))
+  googleAuth() {
+    // Redirects to Google
+  }
+
+  @Public()
+  @Get('google/callback')
+  @UseGuards(AuthGuard('google'))
+  async googleCallback(@Req() req: any, @Res() res: any) {
+    const { googleId, email } = req.user;
+    const tokens = await this.authService.googleLogin(googleId, email);
+    const frontendUrl = this.config.get<string>('CORS_ORIGIN', 'http://localhost:3000');
+    const params = new URLSearchParams({
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    });
+    res.redirect(`${frontendUrl}/login?${params.toString()}`);
   }
 }

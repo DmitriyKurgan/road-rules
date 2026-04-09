@@ -42,7 +42,8 @@ enum UserRole {
 model User {
   id           String   @id @default(uuid())
   email        String   @unique
-  passwordHash String
+  passwordHash String?
+  googleId     String?  @unique
   role         UserRole @default(USER)
   refreshToken String?
   createdAt    DateTime @default(now())
