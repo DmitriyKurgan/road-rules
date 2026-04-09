@@ -9,7 +9,7 @@ services:
     name: road-rules-api
     plan: free
     runtime: node
-    buildCommand: pnpm install --frozen-lockfile && pnpm --filter @road-rules/shared run build && pnpm --filter @road-rules/api exec prisma generate && pnpm --filter @road-rules/api run build && pnpm --filter @road-rules/api exec prisma migrate deploy
+    buildCommand: pnpm install --frozen-lockfile && pnpm --filter @road-rules/shared run build && pnpm --filter @road-rules/api exec prisma generate && pnpm --filter @road-rules/api run build && pnpm --filter @road-rules/api exec prisma migrate deploy && pnpm --filter @road-rules/api exec prisma db seed
     startCommand: node apps/api/dist/src/main.js
     envVars:
       - key: NODE_ENV
