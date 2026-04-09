@@ -1,5 +1,5 @@
-import { IsString, IsInt, Min } from "class-validator";
-import { Type } from "class-transformer";
+import { IsString, IsInt, Min } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class SubmitAnswerDto {
   @IsString()

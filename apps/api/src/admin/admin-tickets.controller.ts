@@ -1,13 +1,21 @@
-import { Controller, Get, Post, Param, Query, Body, UseGuards } from "@nestjs/common";
-import { TicketsService } from "../tickets/tickets.service";
-import { TicketFilterDto } from "../tickets/dto/ticket-filter.dto";
-import { ImportTicketsDto } from "../tickets/dto/import-ticket.dto";
-import { ImagesService } from "../images/images.service";
-import { RolesGuard, Roles } from "../common/guards/roles.guard";
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Query,
+  Body,
+  UseGuards,
+} from '@nestjs/common';
+import { TicketsService } from '../tickets/tickets.service';
+import { TicketFilterDto } from '../tickets/dto/ticket-filter.dto';
+import { ImportTicketsDto } from '../tickets/dto/import-ticket.dto';
+import { ImagesService } from '../images/images.service';
+import { RolesGuard, Roles } from '../common/guards/roles.guard';
 
-@Controller("admin/tickets")
+@Controller('admin/tickets')
 @UseGuards(RolesGuard)
-@Roles("ADMIN")
+@Roles('ADMIN')
 export class AdminTicketsController {
   constructor(
     private ticketsService: TicketsService,
@@ -19,12 +27,12 @@ export class AdminTicketsController {
     return this.ticketsService.findMany(filters);
   }
 
-  @Get(":id")
-  findById(@Param("id") id: string) {
+  @Get(':id')
+  findById(@Param('id') id: string) {
     return this.ticketsService.findById(id);
   }
 
-  @Post("import")
+  @Post('import')
   async importBulk(@Body() dto: ImportTicketsDto) {
     const result = await this.ticketsService.importBulk(dto.tickets);
 
@@ -36,8 +44,8 @@ export class AdminTicketsController {
     return result;
   }
 
-  @Post(":id/publish")
-  publish(@Param("id") id: string) {
+  @Post(':id/publish')
+  publish(@Param('id') id: string) {
     return this.ticketsService.publish(id);
   }
 
@@ -76,7 +84,9 @@ export class AdminTicketsController {
             });
             break;
           }
-        } catch {}
+        } catch {
+          /* image attach is best-effort */
+        }
 
         // Rate limit
         await new Promise((r) => setTimeout(r, 1200));

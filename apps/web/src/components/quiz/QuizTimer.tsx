@@ -6,7 +6,7 @@ const EXAM_DURATION = 20 * 60;
 
 export function QuizTimer({ onTimeout }: { onTimeout: () => void }) {
   const [remaining, setRemaining] = useState(EXAM_DURATION);
-  const handleTimeout = useCallback(onTimeout, [onTimeout]);
+  const handleTimeout = useCallback(() => onTimeout(), [onTimeout]);
 
   useEffect(() => {
     const interval = setInterval(() => {

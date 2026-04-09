@@ -43,9 +43,10 @@ export default function AdminImportPage() {
       const res = await api.post("/admin/tickets/import", { tickets });
       setResult(res.data);
       setPreview(null);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const axiosErr = err as { response?: { data?: { message?: string } }; message?: string };
       setError(
-        err.response?.data?.message || err.message || "Import failed",
+        axiosErr.response?.data?.message || axiosErr.message || "Import failed",
       );
     }
     setLoading(false);

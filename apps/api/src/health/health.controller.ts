@@ -1,11 +1,11 @@
-import { Controller, Get } from "@nestjs/common";
-import { Public } from "../common/decorators/public.decorator";
+import { Controller, Get } from '@nestjs/common';
+import { Public } from '../common/decorators/public.decorator';
 
-@Controller("health")
+@Controller('health')
 export class HealthController {
   @Get()
   @Public()
   check() {
-    return { status: "ok", timestamp: new Date().toISOString() };
+    return { status: 'ok', timestamp: new Date().toISOString() };
   }
 }

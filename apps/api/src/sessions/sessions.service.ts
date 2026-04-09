@@ -2,11 +2,11 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
-} from "@nestjs/common";
-import { PrismaService } from "../prisma/prisma.service";
-import { TicketsService } from "../tickets/tickets.service";
-import { CreateSessionDto } from "./dto/create-session.dto";
-import { SubmitAnswerDto } from "./dto/submit-answer.dto";
+} from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import { TicketsService } from '../tickets/tickets.service';
+import { CreateSessionDto } from './dto/create-session.dto';
+import { SubmitAnswerDto } from './dto/submit-answer.dto';
 
 @Injectable()
 export class SessionsService {
@@ -36,7 +36,7 @@ export class SessionsService {
       },
       include: {
         tickets: {
-          orderBy: { order: "asc" },
+          orderBy: { order: 'asc' },
           select: { id: true, ticketId: true, order: true },
         },
       },
@@ -57,11 +57,11 @@ export class SessionsService {
       where: { id: sessionId },
       include: {
         tickets: {
-          orderBy: { order: "asc" },
+          orderBy: { order: 'asc' },
           include: {
             ticket: {
               include: {
-                options: { orderBy: { order: "asc" } },
+                options: { orderBy: { order: 'asc' } },
                 images: { include: { image: true } },
               },
             },
@@ -79,13 +79,16 @@ export class SessionsService {
       },
     });
 
-    if (!session) throw new NotFoundException("Session not found");
+    if (!session) throw new NotFoundException('Session not found');
 
-    const totalAnswered = session.tickets.filter((t) => t.answer !== null).length;
-    const totalCorrect = session.tickets.filter((t) => t.answer?.isCorrect).length;
-    const currentTicketOrder = totalAnswered < session.tickets.length
-      ? totalAnswered + 1
-      : null;
+    const totalAnswered = session.tickets.filter(
+      (t) => t.answer !== null,
+    ).length;
+    const totalCorrect = session.tickets.filter(
+      (t) => t.answer?.isCorrect,
+    ).length;
+    const currentTicketOrder =
+      totalAnswered < session.tickets.length ? totalAnswered + 1 : null;
 
     return {
       id: session.id,
@@ -137,22 +140,22 @@ export class SessionsService {
         answer: true,
         ticket: {
           include: {
-            options: { orderBy: { order: "asc" } },
+            options: { orderBy: { order: 'asc' } },
           },
         },
       },
     });
 
     if (!sessionTicket) {
-      throw new NotFoundException("Ticket not found in this session");
+      throw new NotFoundException('Ticket not found in this session');
     }
 
     if (sessionTicket.session.endedAt) {
-      throw new BadRequestException("Session already finished");
+      throw new BadRequestException('Session already finished');
     }
 
     if (sessionTicket.answer) {
-      throw new BadRequestException("This ticket was already answered");
+      throw new BadRequestException('This ticket was already answered');
     }
 
     // Verify option belongs to this ticket
@@ -160,7 +163,9 @@ export class SessionsService {
       (o) => o.id === dto.selectedOptionId,
     );
     if (!selectedOption) {
-      throw new BadRequestException("Selected option does not belong to this ticket");
+      throw new BadRequestException(
+        'Selected option does not belong to this ticket',
+      );
     }
 
     // Find correct option
@@ -185,7 +190,7 @@ export class SessionsService {
         answer: null,
         order: { gt: sessionTicket.order },
       },
-      orderBy: { order: "asc" },
+      orderBy: { order: 'asc' },
       select: { ticketId: true, order: true },
     });
 
@@ -215,18 +220,23 @@ export class SessionsService {
       },
     });
 
-    if (!session) throw new NotFoundException("Session not found");
-    if (session.endedAt) throw new BadRequestException("Session already finished");
+    if (!session) throw new NotFoundException('Session not found');
+    if (session.endedAt)
+      throw new BadRequestException('Session already finished');
 
     const totalQuestions = session.tickets.length;
     const answers = session.tickets.filter((t) => t.answer !== null);
     const totalCorrect = answers.filter((t) => t.answer!.isCorrect).length;
-    const totalTime = answers.reduce((sum, t) => sum + (t.answer!.timeMs || 0), 0);
+    const totalTime = answers.reduce(
+      (sum, t) => sum + (t.answer!.timeMs || 0),
+      0,
+    );
     const score = Math.round((totalCorrect / totalQuestions) * 100);
     // Exam mode: pass with ≤2 errors (for 20 questions)
-    const passed = session.mode === "EXAM"
-      ? (totalQuestions - totalCorrect) <= 2
-      : totalCorrect === totalQuestions;
+    const passed =
+      session.mode === 'EXAM'
+        ? totalQuestions - totalCorrect <= 2
+        : totalCorrect === totalQuestions;
 
     // Calculate errors by topic
     const errors = session.tickets

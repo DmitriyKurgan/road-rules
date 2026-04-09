@@ -45,6 +45,7 @@ export default function AdminTicketsPage() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchTickets();
   }, [page, status, difficulty]);
 

@@ -10,9 +10,9 @@ import {
   ArrayMinSize,
   ArrayMaxSize,
   IsOptional,
-} from "class-validator";
-import { Type } from "class-transformer";
-import { Difficulty } from "@prisma/client";
+} from 'class-validator';
+import { Type } from 'class-transformer';
+import { Difficulty } from '@prisma/client';
 
 export class ImportTicketOptionDto {
   @IsString()

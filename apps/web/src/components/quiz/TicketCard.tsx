@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
@@ -36,7 +36,11 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
-  const ticketStartTime = useRef(Date.now());
+  const ticketStartTime = useRef(0);
+
+  useEffect(() => {
+    ticketStartTime.current = performance.now();
+  }, [ticket.ticketId]);
 
   const answered = lastAnswer !== null;
 
@@ -45,7 +49,8 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
     setIsLocked(true);
     setSelectedId(optionId);
     setIsSubmitting(true);
-    const timeMs = Date.now() - ticketStartTime.current;
+    // eslint-disable-next-line react-hooks/purity
+    const timeMs = Math.round(performance.now() - ticketStartTime.current);
     try {
       await submitAnswer(ticket.ticketId, optionId, timeMs);
     } catch {
@@ -58,7 +63,6 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
   const handleNext = () => {
     setSelectedId(null);
     setIsLocked(false);
-    ticketStartTime.current = Date.now();
     nextTicket();
   };
 

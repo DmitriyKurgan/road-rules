@@ -1,5 +1,5 @@
-import { IsEnum, IsOptional, IsString } from "class-validator";
-import { SessionMode, Lang, Difficulty } from "@prisma/client";
+import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { SessionMode, Lang, Difficulty } from '@prisma/client';
 
 export class CreateSessionDto {
   @IsEnum(SessionMode)

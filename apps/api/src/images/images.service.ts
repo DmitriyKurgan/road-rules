@@ -1,23 +1,23 @@
-import { Injectable, NotFoundException, ConflictException } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { TicketImageRole } from "@prisma/client";
-import axios from "axios";
-import * as crypto from "crypto";
-import * as fs from "fs";
-import * as path from "path";
-import { PrismaService } from "../prisma/prisma.service";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { TicketImageRole } from '@prisma/client';
+import axios from 'axios';
+import * as crypto from 'crypto';
+import * as fs from 'fs';
+import * as path from 'path';
+import { PrismaService } from '../prisma/prisma.service';
 
 const ALLOWED_LICENSES = [
-  "cc0",
-  "cc-zero",
-  "public domain",
-  "pd",
-  "cc-by",
-  "cc-by-sa",
-  "cc-by-4.0",
-  "cc-by-sa-4.0",
-  "cc-by-3.0",
-  "cc-by-sa-3.0",
+  'cc0',
+  'cc-zero',
+  'public domain',
+  'pd',
+  'cc-by',
+  'cc-by-sa',
+  'cc-by-4.0',
+  'cc-by-sa-4.0',
+  'cc-by-3.0',
+  'cc-by-sa-3.0',
 ];
 
 export interface WikimediaCandidate {
@@ -40,7 +40,7 @@ export class ImagesService {
     private config: ConfigService,
   ) {
     this.uploadsDir = path.resolve(
-      this.config.get<string>("UPLOADS_DIR", "uploads/images"),
+      this.config.get<string>('UPLOADS_DIR', 'uploads/images'),
     );
     if (!fs.existsSync(this.uploadsDir)) {
       fs.mkdirSync(this.uploadsDir, { recursive: true });
@@ -48,21 +48,22 @@ export class ImagesService {
   }
 
   async searchWikimedia(query: string): Promise<WikimediaCandidate[]> {
-    const resp = await axios.get("https://commons.wikimedia.org/w/api.php", {
+    const resp = await axios.get('https://commons.wikimedia.org/w/api.php', {
       params: {
-        action: "query",
-        format: "json",
-        generator: "search",
+        action: 'query',
+        format: 'json',
+        generator: 'search',
         gsrsearch: query,
         gsrnamespace: 6,
         gsrlimit: 10,
-        prop: "imageinfo",
-        iiprop: "url|extmetadata|size",
-        origin: "*",
+        prop: 'imageinfo',
+        iiprop: 'url|extmetadata|size',
+        origin: '*',
       },
       timeout: 30000,
       headers: {
-        "User-Agent": "RoadRulesTrainer/1.0 (https://github.com/road-rules; admin@road-rules.local)",
+        'User-Agent':
+          'RoadRulesTrainer/1.0 (https://github.com/road-rules; admin@road-rules.local)',
       },
     });
 
@@ -70,36 +71,37 @@ export class ImagesService {
     if (!pages) return [];
 
     const candidates: WikimediaCandidate[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const pageList: any[] = Object.values(pages);
 
-    for (const page of Object.values(pages) as any[]) {
+    for (const page of pageList) {
       const info = page.imageinfo?.[0];
       if (!info) continue;
 
       const ext = info.extmetadata || {};
-      const licenseRaw = ext.LicenseShortName?.value || "";
-      const author = ext.Artist?.value?.replace(/<[^>]+>/g, "") || "Unknown";
-      const title = page.title?.replace("File:", "") || "";
+      const licenseRaw = ext.LicenseShortName?.value || '';
+      const author = ext.Artist?.value?.replace(/<[^>]+>/g, '') || 'Unknown';
+      const title = page.title?.replace('File:', '') || '';
 
       // Filter by allowed licenses
       const licenseNorm = licenseRaw.toLowerCase();
-      const isAllowed = ALLOWED_LICENSES.some(
-        (l) => licenseNorm.includes(l),
-      );
+      const isAllowed = ALLOWED_LICENSES.some((l) => licenseNorm.includes(l));
       if (!isAllowed) continue;
 
       // Filter out non-image files (PDFs, DjVu, etc.)
       const titleLower = title.toLowerCase();
       if (
-        titleLower.endsWith(".pdf") ||
-        titleLower.endsWith(".djvu") ||
-        titleLower.endsWith(".ogg") ||
-        titleLower.endsWith(".ogv") ||
-        titleLower.endsWith(".webm") ||
-        titleLower.endsWith(".mp3") ||
-        titleLower.endsWith(".wav")
-      ) continue;
+        titleLower.endsWith('.pdf') ||
+        titleLower.endsWith('.djvu') ||
+        titleLower.endsWith('.ogg') ||
+        titleLower.endsWith('.ogv') ||
+        titleLower.endsWith('.webm') ||
+        titleLower.endsWith('.mp3') ||
+        titleLower.endsWith('.wav')
+      )
+        continue;
 
-      const pageUrl = `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title)}`;
+      const pageUrl = `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title as string)}`;
       const attribution = `${title} by ${author}, ${licenseRaw}, via Wikimedia Commons`;
 
       candidates.push({
@@ -132,20 +134,21 @@ export class ImagesService {
     const ticket = await this.prisma.ticket.findUnique({
       where: { id: ticketId },
     });
-    if (!ticket) throw new NotFoundException("Ticket not found");
+    if (!ticket) throw new NotFoundException('Ticket not found');
 
     // Download image
     const imageResp = await axios.get(imageData.sourceUrl, {
-      responseType: "arraybuffer",
+      responseType: 'arraybuffer',
       timeout: 30000,
       headers: {
-        "User-Agent": "RoadRulesTrainer/1.0 (https://github.com/road-rules; admin@road-rules.local)",
+        'User-Agent':
+          'RoadRulesTrainer/1.0 (https://github.com/road-rules; admin@road-rules.local)',
       },
     });
     const buffer = Buffer.from(imageResp.data);
 
     // Compute sha256
-    const sha256 = crypto.createHash("sha256").update(buffer).digest("hex");
+    const sha256 = crypto.createHash('sha256').update(buffer).digest('hex');
 
     // Check for duplicate
     const existing = await this.prisma.imageAsset.findUnique({
@@ -157,12 +160,13 @@ export class ImagesService {
       imageAsset = existing;
     } else {
       // Determine file extension from content type or URL
-      const contentType = imageResp.headers["content-type"] || "";
-      let ext = "bin";
-      if (contentType.includes("svg")) ext = "svg";
-      else if (contentType.includes("png")) ext = "png";
-      else if (contentType.includes("jpeg") || contentType.includes("jpg")) ext = "jpg";
-      else if (contentType.includes("webp")) ext = "webp";
+      const contentType = imageResp.headers['content-type'] || '';
+      let ext = 'bin';
+      if (contentType.includes('svg')) ext = 'svg';
+      else if (contentType.includes('png')) ext = 'png';
+      else if (contentType.includes('jpeg') || contentType.includes('jpg'))
+        ext = 'jpg';
+      else if (contentType.includes('webp')) ext = 'webp';
 
       const storedKey = `${sha256}.${ext}`;
       const filePath = path.join(this.uploadsDir, storedKey);

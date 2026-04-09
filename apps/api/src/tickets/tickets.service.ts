@@ -1,8 +1,12 @@
-import { Injectable, NotFoundException, BadRequestException } from "@nestjs/common";
-import { Difficulty, Prisma, TicketStatus } from "@prisma/client";
-import { PrismaService } from "../prisma/prisma.service";
-import { TicketFilterDto } from "./dto/ticket-filter.dto";
-import { ImportTicketDto } from "./dto/import-ticket.dto";
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { Difficulty, Prisma, TicketStatus } from '@prisma/client';
+import { PrismaService } from '../prisma/prisma.service';
+import { TicketFilterDto } from './dto/ticket-filter.dto';
+import { ImportTicketDto } from './dto/import-ticket.dto';
 
 @Injectable()
 export class TicketsService {
@@ -12,11 +16,11 @@ export class TicketsService {
     const ticket = await this.prisma.ticket.findUnique({
       where: { scenarioHash },
       include: {
-        options: { orderBy: { order: "asc" } },
+        options: { orderBy: { order: 'asc' } },
         images: { include: { image: true } },
       },
     });
-    if (!ticket) throw new NotFoundException("Ticket not found");
+    if (!ticket) throw new NotFoundException('Ticket not found');
     return ticket;
   }
 
@@ -24,16 +28,23 @@ export class TicketsService {
     const ticket = await this.prisma.ticket.findUnique({
       where: { id },
       include: {
-        options: { orderBy: { order: "asc" } },
+        options: { orderBy: { order: 'asc' } },
         images: { include: { image: true } },
       },
     });
-    if (!ticket) throw new NotFoundException("Ticket not found");
+    if (!ticket) throw new NotFoundException('Ticket not found');
     return ticket;
   }
 
   async findMany(filters: TicketFilterDto) {
-    const { page = 1, pageSize = 20, difficulty, status, search, tags } = filters;
+    const {
+      page = 1,
+      pageSize = 20,
+      difficulty,
+      status,
+      search,
+      tags,
+    } = filters;
 
     const where: Prisma.TicketWhereInput = {};
 
@@ -44,9 +55,9 @@ export class TicketsService {
     }
     if (search) {
       where.OR = [
-        { questionRu: { contains: search, mode: "insensitive" } },
-        { questionUk: { contains: search, mode: "insensitive" } },
-        { pddRef: { contains: search, mode: "insensitive" } },
+        { questionRu: { contains: search, mode: 'insensitive' } },
+        { questionUk: { contains: search, mode: 'insensitive' } },
+        { pddRef: { contains: search, mode: 'insensitive' } },
       ];
     }
 
@@ -54,11 +65,11 @@ export class TicketsService {
       this.prisma.ticket.findMany({
         where,
         include: {
-          options: { orderBy: { order: "asc" } },
+          options: { orderBy: { order: 'asc' } },
         },
         skip: (page - 1) * pageSize,
         take: pageSize,
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: 'desc' },
       }),
       this.prisma.ticket.count({ where }),
     ]);
@@ -76,7 +87,10 @@ export class TicketsService {
       // Validate exactly 1 correct option
       const correctCount = t.options.filter((o) => o.isCorrect).length;
       if (correctCount !== 1) {
-        errors.push({ index: i, message: `Expected exactly 1 correct option, got ${correctCount}` });
+        errors.push({
+          index: i,
+          message: `Expected exactly 1 correct option, got ${correctCount}`,
+        });
         continue;
       }
 
@@ -85,7 +99,10 @@ export class TicketsService {
         where: { scenarioHash: t.scenarioHash },
       });
       if (existing) {
-        errors.push({ index: i, message: `Duplicate scenarioHash: ${t.scenarioHash}` });
+        errors.push({
+          index: i,
+          message: `Duplicate scenarioHash: ${t.scenarioHash}`,
+        });
         continue;
       }
 
@@ -115,7 +132,7 @@ export class TicketsService {
         });
         created++;
       } catch (e: any) {
-        errors.push({ index: i, message: e.message || "Unknown error" });
+        errors.push({ index: i, message: e.message || 'Unknown error' });
       }
     }
 
@@ -124,15 +141,17 @@ export class TicketsService {
 
   async publish(id: string) {
     const ticket = await this.prisma.ticket.findUnique({ where: { id } });
-    if (!ticket) throw new NotFoundException("Ticket not found");
+    if (!ticket) throw new NotFoundException('Ticket not found');
     if (ticket.status !== TicketStatus.DRAFT) {
-      throw new BadRequestException(`Cannot publish ticket with status ${ticket.status}`);
+      throw new BadRequestException(
+        `Cannot publish ticket with status ${ticket.status}`,
+      );
     }
 
     return this.prisma.ticket.update({
       where: { id },
       data: { status: TicketStatus.PUBLISHED },
-      include: { options: { orderBy: { order: "asc" } } },
+      include: { options: { orderBy: { order: 'asc' } } },
     });
   }
 
@@ -163,7 +182,9 @@ export class TicketsService {
     const take = Math.min(count, available);
 
     if (take === 0) {
-      throw new BadRequestException("No tickets available matching the criteria");
+      throw new BadRequestException(
+        'No tickets available matching the criteria',
+      );
     }
 
     // Use random ordering for selection

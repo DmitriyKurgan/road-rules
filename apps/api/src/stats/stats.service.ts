@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "../prisma/prisma.service";
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class StatsService {
@@ -10,14 +10,15 @@ export class StatsService {
     const sessions = await this.prisma.session.findMany({
       where: { userId, endedAt: { not: null } },
       select: { id: true, score: true, startedAt: true, mode: true },
-      orderBy: { startedAt: "desc" },
+      orderBy: { startedAt: 'desc' },
     });
 
     const totalSessions = sessions.length;
     const scores = sessions.map((s) => s.score ?? 0);
-    const avgScore = totalSessions > 0
-      ? Math.round(scores.reduce((a, b) => a + b, 0) / totalSessions)
-      : 0;
+    const avgScore =
+      totalSessions > 0
+        ? Math.round(scores.reduce((a, b) => a + b, 0) / totalSessions)
+        : 0;
     const bestScore = totalSessions > 0 ? Math.max(...scores) : 0;
 
     // Current streak: consecutive sessions with score >= 90 (passed) from most recent
@@ -72,9 +73,10 @@ export class StatsService {
         difficulty: r.difficulty,
         total: Number(r.total),
         correct: Number(r.correct),
-        accuracy: Number(r.total) > 0
-          ? Math.round((Number(r.correct) / Number(r.total)) * 100)
-          : 0,
+        accuracy:
+          Number(r.total) > 0
+            ? Math.round((Number(r.correct) / Number(r.total)) * 100)
+            : 0,
       })),
       sessionsOverTime: sessionsOverTime.map((r) => ({
         date: r.date,
@@ -152,7 +154,7 @@ export class StatsService {
             select: { id: true },
           },
         },
-        orderBy: { startedAt: "desc" },
+        orderBy: { startedAt: 'desc' },
         skip: (page - 1) * pageSize,
         take: pageSize,
       }),

@@ -39,8 +39,9 @@ export default function AdminImagesPage() {
     try {
       const res = await api.post("/admin/images/resolve", { query });
       setCandidates(res.data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Search failed");
+    } catch (err: unknown) {
+      const axiosErr = err as { response?: { data?: { message?: string } } };
+      setError(axiosErr.response?.data?.message || "Search failed");
     }
     setSearching(false);
   };
@@ -63,8 +64,9 @@ export default function AdminImagesPage() {
         attributionHtml: candidate.attributionHtml,
       });
       setAttachResult(res.data);
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Attach failed");
+    } catch (err: unknown) {
+      const axiosErr = err as { response?: { data?: { message?: string } } };
+      setError(axiosErr.response?.data?.message || "Attach failed");
     }
     setAttaching(null);
   };

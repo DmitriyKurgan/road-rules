@@ -1,5 +1,5 @@
-import { IsString, IsEnum, IsOptional } from "class-validator";
-import { TicketImageRole } from "@prisma/client";
+import { IsString, IsEnum, IsOptional } from 'class-validator';
+import { TicketImageRole } from '@prisma/client';
 
 export class AttachImageDto {
   @IsString()

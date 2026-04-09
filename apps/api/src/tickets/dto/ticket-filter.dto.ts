@@ -1,6 +1,6 @@
-import { IsOptional, IsEnum, IsString, IsInt, Min, Max } from "class-validator";
-import { Type } from "class-transformer";
-import { Difficulty, TicketStatus } from "@prisma/client";
+import { IsOptional, IsEnum, IsString, IsInt, Min, Max } from 'class-validator';
+import { Type } from 'class-transformer';
+import { Difficulty, TicketStatus } from '@prisma/client';
 
 export class TicketFilterDto {
   @IsOptional()

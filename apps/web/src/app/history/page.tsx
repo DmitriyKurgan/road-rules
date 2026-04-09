@@ -31,14 +31,21 @@ function HistoryContent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     api
       .get(`/stats/history?page=${page}&pageSize=10`)
       .then((res) => {
-        setHistory(res.data);
-        setLoading(false);
+        if (!cancelled) {
+          setHistory(res.data);
+          setLoading(false);
+        }
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
   }, [page]);
 
   if (loading) {
