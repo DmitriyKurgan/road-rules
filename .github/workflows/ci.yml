@@ -110,3 +110,19 @@ jobs:
 
       - name: Build all packages
         run: pnpm run build
+
+  deploy-api:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Render
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK_URL" ]; then
+            curl -s "$RENDER_DEPLOY_HOOK_URL"
+            echo "Deploy triggered"
+          else
+            echo "RENDER_DEPLOY_HOOK_URL not set, skipping deploy"
+          fi
