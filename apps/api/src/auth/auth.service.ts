@@ -45,7 +45,7 @@ export class AuthService {
     return this.generateTokens(user.id, user.email, user.role);
   }
 
-  async googleLogin(googleId: string, email: string) {
+  async googleLogin(googleId: string, email: string, avatarUrl?: string | null) {
     let user = await this.prisma.user.findUnique({ where: { googleId } });
 
     if (!user) {
@@ -55,17 +55,26 @@ export class AuthService {
         // Link Google account to existing user
         user = await this.prisma.user.update({
           where: { id: user.id },
-          data: { googleId },
+          data: { googleId, avatarUrl: user.avatarUrl || avatarUrl || null },
         });
       } else {
         // Create new user
         user = await this.prisma.user.create({
-          data: { email, googleId },
+          data: { email, googleId, avatarUrl: avatarUrl || null },
         });
       }
     }
 
     return this.generateTokens(user.id, user.email, user.role);
+  }
+
+  async updateAvatar(userId: string, avatarUrl: string) {
+    const user = await this.prisma.user.update({
+      where: { id: userId },
+      data: { avatarUrl },
+      select: { id: true, email: true, role: true, avatarUrl: true, createdAt: true },
+    });
+    return user;
   }
 
   async refreshTokens(refreshToken: string) {
@@ -107,6 +116,7 @@ export class AuthService {
         id: true,
         email: true,
         role: true,
+        avatarUrl: true,
         createdAt: true,
       },
     });

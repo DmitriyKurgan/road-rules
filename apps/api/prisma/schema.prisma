@@ -44,6 +44,7 @@ model User {
   email        String   @unique
   passwordHash String?
   googleId     String?  @unique
+  avatarUrl    String?
   role         UserRole @default(USER)
   refreshToken String?
   createdAt    DateTime @default(now())

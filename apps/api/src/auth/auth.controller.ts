@@ -15,6 +15,7 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { RefreshDto } from './dto/refresh.dto';
+import { UpdateAvatarDto } from './dto/update-avatar.dto';
 import { Public } from '../common/decorators/public.decorator';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 
@@ -56,6 +57,15 @@ export class AuthController {
     return this.authService.getProfile(userId);
   }
 
+  @Post('avatar')
+  @HttpCode(HttpStatus.OK)
+  updateAvatar(
+    @CurrentUser('id') userId: string,
+    @Body() dto: UpdateAvatarDto,
+  ) {
+    return this.authService.updateAvatar(userId, dto.avatarUrl);
+  }
+
   @Public()
   @Get('google')
   @UseGuards(AuthGuard('google'))
@@ -67,8 +77,8 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
   async googleCallback(@Req() req: any, @Res() res: any) {
-    const { googleId, email } = req.user;
-    const tokens = await this.authService.googleLogin(googleId, email);
+    const { googleId, email, avatarUrl } = req.user;
+    const tokens = await this.authService.googleLogin(googleId, email, avatarUrl);
     const frontendUrl = this.config.get<string>(
       'FRONTEND_URL',
       this.config.get<string>('CORS_ORIGIN', 'http://localhost:3000'),

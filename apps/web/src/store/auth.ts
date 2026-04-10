@@ -5,6 +5,7 @@ interface User {
   id: string;
   email: string;
   role: string;
+  avatarUrl: string | null;
 }
 
 interface AuthState {
@@ -14,6 +15,7 @@ interface AuthState {
   register: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   fetchProfile: () => Promise<void>;
+  updateAvatar: (avatarUrl: string) => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -53,5 +55,12 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch {
       set({ user: null, isLoading: false });
     }
+  },
+
+  updateAvatar: async (avatarUrl: string) => {
+    const res = await api.post("/auth/avatar", { avatarUrl });
+    set((state) => ({
+      user: state.user ? { ...state.user, avatarUrl: res.data.avatarUrl } : null,
+    }));
   },
 }));

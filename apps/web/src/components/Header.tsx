@@ -1,16 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useAuthStore } from "@/store/auth";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { UserMenu } from "./UserMenu";
+import { Avatar } from "./Avatar";
 
 export function Header() {
   const t = useTranslations("common");
-  const { user, logout } = useAuthStore();
+  const { user, logout, fetchProfile } = useAuthStore();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (localStorage.getItem("accessToken")) {
+      fetchProfile();
+    }
+  }, [fetchProfile]);
 
   const navLinks = [
     { href: "/practice", label: t("practice") },
@@ -46,12 +55,7 @@ export function Header() {
           <LanguageSwitcher />
           <ThemeSwitcher />
           {user ? (
-            <button
-              onClick={() => logout()}
-              className="spring-transition ml-1 rounded-lg px-3 py-2 text-sm text-[var(--text-muted)] hover:text-red-500"
-            >
-              {t("logout")}
-            </button>
+            <UserMenu />
           ) : (
             <Link
               href="/login"
@@ -93,12 +97,18 @@ export function Header() {
               <ThemeSwitcher />
             </div>
             {user ? (
-              <button
-                onClick={() => { logout(); setMobileOpen(false); }}
-                className="rounded-lg px-3 py-2.5 text-left text-sm text-red-500"
-              >
-                {t("logout")}
-              </button>
+              <>
+                <div className="flex items-center gap-3 px-3 py-2">
+                  <Avatar email={user.email} avatarUrl={user.avatarUrl} size={36} />
+                  <span className="truncate text-sm text-[var(--text-secondary)]">{user.email}</span>
+                </div>
+                <button
+                  onClick={() => { logout(); setMobileOpen(false); }}
+                  className="rounded-lg px-3 py-2.5 text-left text-sm text-red-500"
+                >
+                  {t("logout")}
+                </button>
+              </>
             ) : (
               <Link
                 href="/login"
