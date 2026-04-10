@@ -69,7 +69,10 @@ export class AuthController {
   async googleCallback(@Req() req: any, @Res() res: any) {
     const { googleId, email } = req.user;
     const tokens = await this.authService.googleLogin(googleId, email);
-    const frontendUrl = this.config.get<string>('CORS_ORIGIN', 'http://localhost:3000');
+    const frontendUrl = this.config.get<string>(
+      'FRONTEND_URL',
+      this.config.get<string>('CORS_ORIGIN', 'http://localhost:3000'),
+    );
     const params = new URLSearchParams({
       accessToken: tokens.accessToken,
       refreshToken: tokens.refreshToken,
