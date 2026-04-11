@@ -35,10 +35,12 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isLocked, setIsLocked] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const ticketStartTime = useRef(0);
 
   useEffect(() => {
     ticketStartTime.current = performance.now();
+    setImageFailed(false);
   }, [ticket.ticketId]);
 
   const answered = lastAnswer !== null;
@@ -81,7 +83,7 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
 
   const questionText = lang === "uk" ? ticket.question.uk : ticket.question.ru;
   const letters = ["A", "B", "C", "D"];
-  const hasImage = ticket.images && ticket.images.length > 0;
+  const hasImage = ticket.images && ticket.images.length > 0 && !imageFailed;
 
   return (
     <motion.div
@@ -114,6 +116,7 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
               }
               alt={ticket.images![0].title}
               className="mx-auto max-h-24 object-contain sm:max-h-28"
+              onError={() => setImageFailed(true)}
             />
           </div>
         </div>
