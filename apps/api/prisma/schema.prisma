@@ -99,6 +99,7 @@ model ImageAsset {
   id              String   @id @default(uuid())
   sourceUrl       String
   storedKey       String   @unique
+  externalUrl     String?
   license         String
   author          String
   title           String

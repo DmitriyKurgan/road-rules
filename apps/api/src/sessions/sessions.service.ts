@@ -125,7 +125,7 @@ export class SessionsService {
             uk: st.ticket.explanationUk,
           },
           images: st.ticket.images.map((ti: any) => ({
-            url: `/uploads/images/${ti.image.storedKey}`,
+            url: ti.image.externalUrl || `/uploads/images/${ti.image.storedKey}`,
             title: ti.image.title,
             attributionHtml: ti.image.attributionHtml,
           })),

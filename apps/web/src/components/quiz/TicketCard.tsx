@@ -107,7 +107,11 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
         <div className="mb-3 flex justify-center">
           <div className="overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] px-3 py-2">
             <img
-              src={`${process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:3001"}${ticket.images![0].url}`}
+              src={
+                ticket.images![0].url.startsWith("http")
+                  ? ticket.images![0].url
+                  : `${process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "http://localhost:3001"}${ticket.images![0].url}`
+              }
               alt={ticket.images![0].title}
               className="mx-auto max-h-24 object-contain sm:max-h-28"
             />
