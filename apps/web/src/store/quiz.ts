@@ -17,6 +17,13 @@ interface QuizTicket {
   pddRef: string;
   difficulty: string;
   options: QuizOption[];
+  correctOptionId: string | null;
+  explanation: { ru: string; uk: string };
+  images?: Array<{
+    url: string;
+    title: string;
+    attributionHtml: string;
+  }>;
   answer: {
     selectedOptionId: string;
     isCorrect: boolean;
@@ -65,7 +72,7 @@ interface QuizState {
     ticketId: string,
     optionId: string,
     timeMs: number,
-  ) => Promise<AnswerResult>;
+  ) => AnswerResult;
   nextTicket: () => void;
   finishSession: () => Promise<FinishResult>;
   reset: () => void;
@@ -104,15 +111,38 @@ export const useQuizStore = create<QuizState>((set, get) => ({
     });
   },
 
-  submitAnswer: async (ticketId, optionId, timeMs) => {
-    const { sessionId } = get();
-    const res = await api.post(`/sessions/${sessionId}/answer`, {
-      ticketId,
-      selectedOptionId: optionId,
-      timeMs,
-    });
-    const result: AnswerResult = res.data;
+  submitAnswer: (ticketId, optionId, timeMs) => {
+    const { sessionId, tickets } = get();
+    const ticket = tickets.find((t) => t.ticketId === ticketId);
+    if (!ticket) {
+      throw new Error("Ticket not found");
+    }
+
+    const correctOptionId = ticket.correctOptionId || "";
+    const isCorrect = optionId === correctOptionId;
+
+    const result: AnswerResult = {
+      isCorrect,
+      correctOptionId,
+      explanation: ticket.explanation,
+      pddRef: ticket.pddRef,
+      nextTicketId: null,
+    };
+
+    // Immediately update local state — zero latency UI
     set({ lastAnswer: result });
+
+    // Record answer on backend in background (fire-and-forget)
+    api
+      .post(`/sessions/${sessionId}/answer`, {
+        ticketId,
+        selectedOptionId: optionId,
+        timeMs,
+      })
+      .catch(() => {
+        // Silently ignore; finish will still work even if some answers didn't record
+      });
+
     return result;
   },
 

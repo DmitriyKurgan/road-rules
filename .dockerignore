@@ -8,6 +8,5 @@ coverage
 .env.local
 .env.production
 *.log
-apps/api/uploads
 apps/api/generated
 agents/data/*.jsonl

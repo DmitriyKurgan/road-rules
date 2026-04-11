@@ -8,8 +8,12 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Serve uploaded images as static files
-  app.useStaticAssets(path.resolve('uploads'), { prefix: '/uploads' });
+  // Serve uploaded images as static files.
+  // __dirname points to apps/api/dist/src/ → ../../uploads = apps/api/uploads/.
+  // Works regardless of cwd (local dev from apps/api, Render runs from repo root).
+  app.useStaticAssets(path.resolve(__dirname, '../../uploads'), {
+    prefix: '/uploads',
+  });
 
   app.useBodyParser('json', { limit: '10mb' });
   app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));

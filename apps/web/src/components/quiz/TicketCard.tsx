@@ -34,7 +34,6 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
     useQuizStore();
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
   const ticketStartTime = useRef(0);
 
@@ -44,20 +43,18 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
 
   const answered = lastAnswer !== null;
 
-  const handleSelect = async (optionId: string) => {
-    if (answered || isSubmitting || isLocked) return;
+  const handleSelect = (optionId: string) => {
+    if (answered || isLocked) return;
     setIsLocked(true);
     setSelectedId(optionId);
-    setIsSubmitting(true);
     // eslint-disable-next-line react-hooks/purity
     const timeMs = Math.round(performance.now() - ticketStartTime.current);
     try {
-      await submitAnswer(ticket.ticketId, optionId, timeMs);
+      submitAnswer(ticket.ticketId, optionId, timeMs);
     } catch {
       setSelectedId(null);
       setIsLocked(false);
     }
-    setIsSubmitting(false);
   };
 
   const handleNext = () => {
@@ -73,8 +70,6 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
 
   const getOptionStyle = (optionId: string) => {
     if (!answered) {
-      if (optionId === selectedId && isSubmitting)
-        return "border-teal-400 bg-[var(--glow-blue)] scale-[0.98]";
       return "border-[var(--border-subtle)] hover:border-[var(--border-hover)] hover:bg-[var(--glow-blue)] hover:scale-[1.01] cursor-pointer";
     }
     if (optionId === lastAnswer.correctOptionId)
@@ -131,7 +126,7 @@ export function TicketCard({ ticket, isLast }: TicketCardProps) {
             <motion.button
               key={option.id}
               onClick={() => handleSelect(option.id)}
-              disabled={answered || isSubmitting}
+              disabled={answered}
               animate={isWrong ? { x: [0, -5, 5, -3, 3, 0] } : {}}
               transition={isWrong ? { duration: 0.35 } : {}}
               className={`spring-transition flex w-full items-center gap-3 rounded-xl border-2 px-3 py-2.5 text-left text-sm ${getOptionStyle(option.id)}`}

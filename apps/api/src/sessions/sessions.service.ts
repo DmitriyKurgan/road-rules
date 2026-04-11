@@ -100,31 +100,38 @@ export class SessionsService {
       totalAnswered,
       totalCorrect,
       currentTicketOrder,
-      tickets: session.tickets.map((st) => ({
-        sessionTicketId: st.id,
-        order: st.order,
-        ticketId: st.ticketId,
-        question: {
-          ru: st.ticket.questionRu,
-          uk: st.ticket.questionUk,
-        },
-        pddRef: st.ticket.pddRef,
-        difficulty: st.ticket.difficulty,
-        options: st.ticket.options.map((o) => ({
-          id: o.id,
-          order: o.order,
-          textRu: o.textRu,
-          textUk: o.textUk,
-          // Only reveal isCorrect if answer was already submitted
-          ...(st.answer ? { isCorrect: o.isCorrect } : {}),
-        })),
-        images: st.ticket.images.map((ti: any) => ({
-          url: `/uploads/images/${ti.image.storedKey}`,
-          title: ti.image.title,
-          attributionHtml: ti.image.attributionHtml,
-        })),
-        answer: st.answer,
-      })),
+      tickets: session.tickets.map((st) => {
+        const correctOption = st.ticket.options.find((o) => o.isCorrect);
+        return {
+          sessionTicketId: st.id,
+          order: st.order,
+          ticketId: st.ticketId,
+          question: {
+            ru: st.ticket.questionRu,
+            uk: st.ticket.questionUk,
+          },
+          pddRef: st.ticket.pddRef,
+          difficulty: st.ticket.difficulty,
+          options: st.ticket.options.map((o) => ({
+            id: o.id,
+            order: o.order,
+            textRu: o.textRu,
+            textUk: o.textUk,
+            isCorrect: o.isCorrect,
+          })),
+          correctOptionId: correctOption?.id || null,
+          explanation: {
+            ru: st.ticket.explanationRu,
+            uk: st.ticket.explanationUk,
+          },
+          images: st.ticket.images.map((ti: any) => ({
+            url: `/uploads/images/${ti.image.storedKey}`,
+            title: ti.image.title,
+            attributionHtml: ti.image.attributionHtml,
+          })),
+          answer: st.answer,
+        };
+      }),
     };
   }
 
