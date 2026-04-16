@@ -55,6 +55,35 @@ function findSituationalImage(scenarioHash: string): string | null {
   return null;
 }
 
+// Extract base sign number (X.Y) from scenarioHash patterns like:
+//   b02-warning-sign-1.17-001 -> "1.17"
+//   b03-priority-sign-2.1-005 -> "2.1"
+//   b04-prohibitory-sign-3.21-002 -> "3.21"
+//   b05-mandatory-4.10-001 -> "4.10"
+//   b06-info-5.38-002 -> "5.38"
+const SIGN_FROM_HASH_RE = /^b0[2-7][a-z-]*?-(?:sign-)?(\d+\.\d+)/;
+
+function extractSignNumber(scenarioHash: string): string | null {
+  const m = scenarioHash.match(SIGN_FROM_HASH_RE);
+  return m ? m[1] : null;
+}
+
+// Extract sign number from imageSearchQueries entries like:
+//   "UA road sign 4.14 svg" -> "4.14"
+//   "UA road sign 3.29-050 svg" -> "3.29-050"
+//   "site:commons.wikimedia.org UA road sign 5.1 svg" -> "5.1"
+const SIGN_FROM_QUERY_RE = /UA[ _]road[ _]sign[ _](\d+\.\d+(?:-\d+)?)/i;
+
+function extractSignFromQueries(queries: any): string | null {
+  if (!Array.isArray(queries)) return null;
+  for (const q of queries) {
+    if (typeof q !== "string") continue;
+    const m = q.match(SIGN_FROM_QUERY_RE);
+    if (m) return m[1];
+  }
+  return null;
+}
+
 async function main() {
   // Create admin user
   const adminHash = await bcrypt.hash("admin123", 10);
@@ -143,6 +172,35 @@ async function main() {
     return asset.id;
   };
 
+  // Image resolution priority:
+  // 1. Situational diagram (matched by scenarioHash prefix)
+  // 2. Sign extracted from scenarioHash (e.g. b04-prohibitory-sign-3.21-001 -> "3.21")
+  // 3. Sign extracted from imageSearchQueries[0] (e.g. "UA road sign 4.14 svg" -> "4.14")
+  // 4. Wikimedia sign by pddRef -> sign mapping (rule article -> related sign)
+  const resolveImageId = async (
+    scenarioHash: string,
+    pddRef: string,
+    imageSearchQueries: any,
+  ): Promise<string | null> => {
+    const situ = findSituationalImage(scenarioHash);
+    if (situ) return getOrCreateLocalAsset(situ);
+
+    const signFromHash = extractSignNumber(scenarioHash);
+    if (signFromHash && imageMap.signs[signFromHash]) {
+      return getOrCreateSignAsset(signFromHash);
+    }
+
+    const signFromQuery = extractSignFromQueries(imageSearchQueries);
+    if (signFromQuery && imageMap.signs[signFromQuery]) {
+      return getOrCreateSignAsset(signFromQuery);
+    }
+
+    const pddSign = imageMap.pddRef_to_image[pddRef];
+    if (pddSign) return getOrCreateSignAsset(pddSign);
+
+    return null;
+  };
+
   // Import all batch files
   let totalCreated = 0;
   let totalSkipped = 0;
@@ -188,17 +246,7 @@ async function main() {
         totalSkipped++;
         // Still try to attach missing images
         if (existing.images.length === 0) {
-          // Resolve image for this ticket
-          const situ = findSituationalImage(t.scenarioHash);
-          let imageId: string | null = null;
-          if (situ) {
-            imageId = await getOrCreateLocalAsset(situ);
-          } else {
-            const signNum = imageMap.pddRef_to_image[t.pddRef];
-            if (signNum) {
-              imageId = await getOrCreateSignAsset(signNum);
-            }
-          }
+          const imageId = await resolveImageId(t.scenarioHash, t.pddRef, t.imageSearchQueries);
           if (imageId) {
             try {
               await prisma.ticketImage.create({
@@ -248,20 +296,7 @@ async function main() {
         });
         batchCreated++;
 
-        // Resolve image for this ticket:
-        // 1. Try situational image by scenarioHash prefix
-        // 2. Fall back to Wikimedia sign by pddRef
-        const situ = findSituationalImage(t.scenarioHash);
-        let imageId: string | null = null;
-        if (situ) {
-          imageId = await getOrCreateLocalAsset(situ);
-        } else {
-          const signNum = imageMap.pddRef_to_image[t.pddRef];
-          if (signNum) {
-            imageId = await getOrCreateSignAsset(signNum);
-          }
-        }
-
+        const imageId = await resolveImageId(t.scenarioHash, t.pddRef, t.imageSearchQueries);
         if (imageId) {
           await prisma.ticketImage.create({
             data: {
